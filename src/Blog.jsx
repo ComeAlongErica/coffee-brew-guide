@@ -4,7 +4,7 @@ const Blog = () => {
 
   return (
     <div>
-      This is Save Component
+      This is Blog Component
     </div>
   );
 }

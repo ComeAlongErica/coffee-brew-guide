@@ -4,7 +4,7 @@ const Recipes = () => {
 
   return (
     <div>
-      This is Save Component
+      This is Recipes Component
     </div>
   );
 }
