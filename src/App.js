@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Search from './components/Search'
+import User from './components/User'
 import Save from './components/Save'
 import Recipes from './components/Recipes'
 import Blog from './components/Blog'
@@ -9,6 +10,7 @@ class App extends Component {
     return (
       <div className="App">
       <Search />
+      <User />
       <Save />
       <Recipes />
       <Blog />
