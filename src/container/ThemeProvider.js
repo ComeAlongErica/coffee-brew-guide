@@ -10,7 +10,7 @@ const lightTheme = {
 
 const darkTheme = {
   fontMain: 'white',
-  fontSecondary: 'light-grey',
+  fontSecondary: 'l§§ight-grey',
   fontAccent: 'dark-grey',
   background: 'black',
   backgroundSeconary: 'white',
@@ -18,5 +18,4 @@ const darkTheme = {
   dropShadow: '',
 }
 
-export default lightTheme
-export default darkTheme
+export default { lightTheme, darkTheme }

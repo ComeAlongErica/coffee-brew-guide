@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 
+import lightTheme from './ThemeProvider.js'
 import Search from '../components/Search'
 import User from '../components/User'
 import Save from '../components/Save'
@@ -14,13 +15,16 @@ const AppContainer = styled.div`
 class App extends Component {
   render() {
     return (
-      <AppContainer className={'appContainer'}>
-        <Search />
-        <User />
-        <Save />
-        <Recipes />
-        <Blog />
-      </AppContainer>
+      <ThemeProvider theme={lightTheme}>
+        <AppContainer className={'appContainer'}>
+          <Search />
+          <User />
+          <Save />
+          <Recipes />
+          <Blog />
+        </AppContainer>
+      </ThemeProvider>
+
     );
   }
 }

@@ -1,11 +1,17 @@
 import React from 'react';
+import styled from 'styled-components'
 
-const Search = () => {
+const SearchContainer = styled.div `
+color: ${props => props.theme.accent || 'pink'};
+`
+
+
+const Search = props => {
 
   return (
-    <div>
+    <SearchContainer>
       This is Search Component
-    </div>
+    </SearchContainer>
   );
 }
 
