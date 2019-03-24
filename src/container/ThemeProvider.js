@@ -18,4 +18,4 @@ const darkTheme = {
   dropShadow: '',
 }
 
-export default { lightTheme, darkTheme }
+export { lightTheme, darkTheme }

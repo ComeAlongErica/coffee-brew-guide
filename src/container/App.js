@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
-import lightTheme from './ThemeProvider.js'
+import { lightTheme } from './ThemeProvider.js'
 import Search from '../components/Search'
 import User from '../components/User'
 import Save from '../components/Save'
