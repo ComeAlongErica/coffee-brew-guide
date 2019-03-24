@@ -16,7 +16,7 @@ const ToggleLabel = styled.label`
   font-size: 40px;
   height: 25px;
   width: 50px;
-  background: ${props => props.theme.background};
+  background: ${props => props.theme.backgroundSeconary};
   border-radius: 1em;
 `
 

@@ -15,7 +15,7 @@ height: 55px;
 background-color: white;
 border: none;
 box-shadow: ${props => props.theme.dropShadow};
-border-radius: 30px 0 30px 0;
+border-radius: 30px 0 30px 30px;
 font-size: 16px;
 color: ${props => props.theme.backgroundSeconary};
 padding-left: 50px;
@@ -34,7 +34,7 @@ const SearchBar = props => {
         width={22}
         height={22}
         stroke={'#B6BABD'} />
-      <SearchInput value={'Search'} />
+      <SearchInput placeholder={'Search'} />
     </SearchContainer>
   )
 }
