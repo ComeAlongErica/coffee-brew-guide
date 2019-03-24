@@ -1,12 +1,12 @@
 const lightTheme = {
   fontMain: '#101B29',
   fontSecondary: '#344056',
-  fontAccent: 'light-grey',
+  // fontAccent: 'light-grey',
   background: '#F0F1F3',
   backgroundSeconary: '#B6BABD',
   accent: '#EBBB4D',
   accentSecondary: '#C09547',
-  dropShadow: '',
+  dropShadow: '0 0.1em 0.3em rgba(0, 0, 0, 0.3)',
 }
 
 const darkTheme = {
@@ -17,7 +17,7 @@ const darkTheme = {
   backgroundSeconary: '#101B29',
   accent: '#EBBB4D',
   accentSecondary: '#C09547',
-  dropShadow: '',
+  dropShadow: '0 0.1em 0.3em rgba(0, 0, 0, 0.3)',
 }
 
 export { lightTheme, darkTheme }
