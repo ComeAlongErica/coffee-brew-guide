@@ -7,6 +7,7 @@ import User from '../components/User'
 import Save from '../components/Save'
 import Recipes from '../components/Recipes'
 import Blog from '../components/Blog'
+import ToggleSwitch from '../components/ToggleSwitch'
 
 const AppContainer = styled.div`
 `
@@ -20,6 +21,7 @@ class App extends Component {
           <Search />
           <User />
           <Save />
+          <ToggleSwitch />
           <Recipes />
           <Blog />
         </AppContainer>
