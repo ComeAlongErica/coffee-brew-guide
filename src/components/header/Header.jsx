@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Search from './parts/Search'
+import SearchBar from './parts/Search'
 import User from './parts/User'
 import Save from './parts/Save'
 import ToggleSwitch from './parts/ToggleSwitch'
@@ -15,7 +15,7 @@ const Header = props => {
 
   return (
     <HeaderContainer>
-      <Search />
+      <SearchBar />
       <User />
       <Save />
       <ToggleSwitch />

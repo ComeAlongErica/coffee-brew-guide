@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
-import { lightTheme } from './ThemeProvider.js'
+import { lightTheme } from '../assets/ThemeProvider'
 import Header from '../components/header/Header'
 import Recipes from '../components/Recipes'
 import Blog from '../components/Blog'
