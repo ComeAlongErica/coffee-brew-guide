@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
+import Button from '../../../assets/Button'
 
 const Save = () => {
 
   return (
     <div>
-      This is Save Component
+    <Button text={'Saved'}/>
     </div>
   );
 }

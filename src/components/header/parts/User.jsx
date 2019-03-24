@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
+import Button from '../../../assets/Button'
+
 
 const User = () => {
 
   return (
-    <div>
-      This is User Component
-    </div>
+    <Button text={'Log In'}/>
   );
 }
 

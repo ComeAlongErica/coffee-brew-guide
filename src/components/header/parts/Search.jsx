@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import SearchIcon from '../../../assets/SearchSVG'
 
 const SearchContainer = styled.div`
-flex-grow: 1;
-margin-right: 20px;
+margin-right: 60px;
 position: relative;
+flex-grow: 1;
 `
 const SearchInput = styled.input`
 outline: none;

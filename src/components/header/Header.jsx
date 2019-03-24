@@ -6,8 +6,12 @@ import User from './parts/User'
 import Save from './parts/Save'
 import ToggleSwitch from './parts/ToggleSwitch'
 
-const HeaderContainer = styled.div `
-display: flex;
+const HeaderContainer = styled.div`
+  display: flex;
+`
+const ButtonsContainer = styled.div`
+  display: flex;
+  margin-right: 80px;
 `
 
 
@@ -16,9 +20,11 @@ const Header = props => {
   return (
     <HeaderContainer>
       <SearchBar />
-      <User />
-      <Save />
-      <ToggleSwitch />
+      <ButtonsContainer>
+        <User />
+        <Save />
+        <ToggleSwitch />
+      </ButtonsContainer>
     </HeaderContainer>
   )
 }
