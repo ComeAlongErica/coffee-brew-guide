@@ -6,6 +6,7 @@ This app will be a coffee brew guide. My goals for this project will be to creat
 
 In the project directory, you can run:
 
+### `npm install`
 ### `npm start`
 
 Runs the app in the development mode.<br>
