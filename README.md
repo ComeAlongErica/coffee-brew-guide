@@ -6,6 +6,7 @@ This app will be a coffee brew guide. My goals for this project will be to creat
 - Create global buttons and modal for delivery of different types of information
 - Experiment with custom animations
 - Create a beautiful app which delivers information clearly and efficiently
+- Focus on user interaction on touch screen devices (on touch/swipe)
 
 ## Available Scripts
 
