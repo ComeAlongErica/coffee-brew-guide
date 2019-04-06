@@ -11,6 +11,9 @@ font-weight: bold;
 font-size: 12px;
 box-shadow: ${props => props.theme.dropShadow};
 border-radius: 30px;
+:hover {
+    box-shadow: ${props => props.theme.dropShadowHover};
+}
 `
 
 const SearchSVG = props => {
