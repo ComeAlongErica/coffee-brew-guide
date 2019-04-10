@@ -26,7 +26,7 @@ class App extends Component {
     // let url = `https://api.edamam.com/search?q=${query}`
     // for quick testing in localhost 
     //open -a Google\ Chrome --args --disable-web-security --user-data-dir
-    let url = 'https://api.edamam.com/search?q=tofu&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5'
+    let url = 'https://api.edamam.com/search?q=espresso&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5'
       console.log(url)
     fetch(url).then(res => res.json())
       .then((result) => {
