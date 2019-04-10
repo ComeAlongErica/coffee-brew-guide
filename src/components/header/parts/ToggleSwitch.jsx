@@ -39,14 +39,15 @@ const Slider = styled.div`
     transition: all 300ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
 `
 
-const ToggleSwitch = () => {
+const ToggleSwitch = props => {
+  const { toggleTheme } = props
 
   return (
     <ToggleContainer className={'toggleContainer'}>
-      <ToggleLabel for="cb2" className={'switch'}>
-      <ToggleInput id="cb2" type="checkbox" className={'checkBox'} />
-      <Slider className={'slider'} />
-      </ToggleLabel>    
+      <ToggleLabel htmlFor={'theme'} className={'switch'}>
+        <ToggleInput id={'theme'} type="checkbox" className={'checkBox'} onClick={toggleTheme}/>
+        <Slider className={'slider'} />
+      </ToggleLabel>
     </ToggleContainer>
   )
 }

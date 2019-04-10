@@ -16,6 +16,7 @@ const ButtonsContainer = styled.div`
 
 
 const Header = props => {
+  const { toggleTheme } = props
 
   return (
     <HeaderContainer>
@@ -23,7 +24,7 @@ const Header = props => {
       <ButtonsContainer>
         <User />
         <Save />
-        <ToggleSwitch />
+        <ToggleSwitch toggleTheme={toggleTheme}/>
       </ButtonsContainer>
     </HeaderContainer>
   )

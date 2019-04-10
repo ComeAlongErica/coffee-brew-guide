@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
-import { lightTheme } from '../assets/ThemeProvider'
+import { lightTheme, darkTheme } from '../assets/ThemeProvider'
 import Header from '../components/header/Header'
 // import Recipes from '../components/Recipes'
 // import Blog from '../components/Blog'
@@ -14,11 +14,20 @@ background-color: ${props => props.theme.background};
 
 
 class App extends Component {
+  state = {
+    theme: true
+  }
+
+  handleToggleTheme = () => {
+    this.setState({ theme: !this.state.theme})
+  }
+
   render() {
+    let displayTheme = this.state.theme ? lightTheme : darkTheme
     return (
-      <ThemeProvider theme={lightTheme}>
+      <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
-          <Header />
+          <Header toggleTheme={this.handleToggleTheme}/>
           {/* <Recipes />
           <Blog /> */}
         </AppContainer>
