@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components'
 
 import { lightTheme, darkTheme } from '../assets/ThemeProvider'
 import Header from '../components/header/Header'
-// import Recipes from '../components/Recipes'
+import Recipes from '../components/Recipes'
 // import Blog from '../components/Blog'
 
 const AppContainer = styled.div`
@@ -23,15 +23,13 @@ class App extends Component {
   }
 
   getRecipeData = (query) => {
-    // let url = `https://api.edamam.com/search?q=${query}`
+    let url = `https://api.edamam.com/search?q=${query}&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5`
     // for quick testing in localhost 
     //open -a Google\ Chrome --args --disable-web-security --user-data-dir
-    let url = 'https://api.edamam.com/search?q=espresso&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5'
-      console.log(url)
-    fetch(url).then(res => res.json())
-      .then((result) => {
-        console.log(result)
-      })
+    // let url = 'https://api.edamam.com/search?q=espresso&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5'
+
+    return fetch(url).then(res => res.json())
+      .then(result => result)
       .catch(error => console.error(error))
   }
 
@@ -40,14 +38,13 @@ class App extends Component {
   }
 
   render() {
-    this.getRecipeData()
     let displayTheme = this.state.theme ? lightTheme : darkTheme
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} />
-          {/* <Recipes />
-          <Blog /> */}
+          <Recipes getRecipeData={this.getRecipeData}/>
+          {/* <Blog /> */}
         </AppContainer>
       </ThemeProvider>
 
