@@ -1,6 +1,18 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+
 import Card from './parts/Card'
 
+const CardScrollContainer = styled.div`
+  margin: 50px 0;
+  min-height: 200px;
+  min-width: 100%;
+  display: flex;
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`
 const Recipes = props => {
   const { getRecipeData } = props
   const [recipes, setRecipes] = useState()
@@ -12,11 +24,12 @@ const Recipes = props => {
   console.log(recipes)
 
   return (
-    <Fragment>
-      {recipes && recipes.map((recipe, idx) => {
-        return <Card recipe={recipe} key={idx} />
-      })}
-    </Fragment>
+    <CardScrollContainer>
+      {recipes &&
+        recipes.map((recipe, idx) => {
+          return <Card recipe={recipe} key={idx} />
+        })}
+    </CardScrollContainer>
   )
 }
 
