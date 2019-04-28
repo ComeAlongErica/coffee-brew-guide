@@ -1,4 +1,5 @@
 import React, { useState, useEffect, Fragment } from 'react'
+import Card from './parts/Card'
 
 const Recipes = props => {
   const { getRecipeData } = props
@@ -13,12 +14,7 @@ const Recipes = props => {
   return (
     <Fragment>
       {recipes && recipes.map((recipe, idx) => {
-        return <div key={idx}>
-          <h3>{recipe.recipe.label}</h3>
-          <img src={recipe.recipe.image} />
-          <p>{recipe.recipe.ingredientLines}</p>
-          <p>Calories: {recipe.recipe.calories / recipe.recipe.yield}</p>
-        </div>
+        return <Card recipe={recipe} key={idx} />
       })}
     </Fragment>
   )
