@@ -24,9 +24,6 @@ class App extends Component {
 
   getRecipeData = (query) => {
     let url = `https://api.edamam.com/search?q=${query}&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5`
-    // for quick testing in localhost 
-    //open -a Google\ Chrome --args --disable-web-security --user-data-dir
-    // let url = 'https://api.edamam.com/search?q=espresso&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5'
 
     return fetch(url).then(res => res.json())
       .then(result => result)
