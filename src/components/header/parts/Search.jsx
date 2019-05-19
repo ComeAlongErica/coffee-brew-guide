@@ -5,6 +5,7 @@ import SearchIcon from '../../../assets/SearchSVG'
 
 const SearchContainer = styled.div`
 margin-right: 60px;
+margin-bottom: 50px;
 position: relative;
 flex-grow: 1;
 `

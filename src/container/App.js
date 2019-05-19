@@ -23,30 +23,33 @@ class App extends Component {
     }
   }
 
-  // componentDidUpdate() {
-	// 	this.getRecipeData().then((data) => {
-	// 		this.setState({ displayData : data.hits })
-	// 	})
-  // }
-  
+  componentDidUpdate () {
+    if (this.state.displayData !== undefined) {
+      this.getRecipeData().then(data => {
+        data && this.setState({ displayData: data.hits })
+      })
+    }
+  }
+
   componentDidMount () {
-		this.getRecipeData().then((data) => {
-      console.log(data)
-			this.setState({ displayData : data.hits })
-		})
-	}
+    this.getRecipeData().then(data => {
+      data && this.setState({ displayData: data.hits })
+    })
+  }
 
   getRecipeData = query => {
-    let searchQuery = 'chicken'
+    let searchQuery = query || 'latte'
     let url = `https://api.edamam.com/search?q=${searchQuery}&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5`
 
     return fetch(url, {
       method: 'GET',
-      mode: 'cors', 
-      cache: 'no-cache', 
+      mode: 'cors',
+      cache: 'no-cache',
       credentials: 'same-origin',
       headers: {
-          'Content-Type': 'application/json'      }})
+        'Content-Type': 'application/json'
+      }
+    })
       .then(res => res.json())
       .then(result => result)
       .catch(error => console.error(error))

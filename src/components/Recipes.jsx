@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Card from './parts/Card'
 
 const CardScrollContainer = styled.div`
-  margin: 40px 0;
+  margin: 5px 0 0;
   min-height: 200px;
   min-width: 100%;
   display: flex;
