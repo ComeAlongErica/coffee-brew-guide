@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
@@ -14,6 +14,48 @@ const CardContainer = styled.div`
   box-shadow: ${props => props.theme.dropShadow};
   display: flex;
   align-items: center;
+  .image {
+    height: 150px;
+    min-width: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-right: 15px;
+    animation-duration: 20s;
+  }
+  .short,
+  .med,
+  .long {
+    margin: 5px;
+    width: 150px;
+    height: 20px;
+  }
+  .short {
+    width: 50px;
+    animation-duration: 50s;
+  }
+  .med {
+    width: 150px;
+    animation-duration: 27s;
+  }
+  .long {
+    width: 200px;
+    animation-duration: 20s;
+  }
+  && div.shimmer-block {
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: linear-gradient(to right, rgba(9, 30, 66, 0.02) 0px, rgba(9, 30, 66, 0.065) 50px, rgba(9, 30, 66, 0.02) 100px);
+  }
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -1000px -1000px;
+    }
+    100% {
+      background-position: 1000px -1000px;
+    }
+  }
 `
 
 const Image = styled.div`
@@ -55,16 +97,32 @@ const TextSection = styled.div`
 `
 
 const Card = props => {
-  const { recipe } = props
+  const { recipe, loader } = props
   return (
-    <CardContainer>
-      <Image image={recipe.recipe.image} />
-      <TextSection>
-        <h3>{recipe.recipe.label}</h3>
-        <p>{recipe.recipe.ingredientLines}</p>
-        <p className={'cals'}>Calories: {Math.ceil(recipe.recipe.calories / recipe.recipe.yield)}</p>
-      </TextSection>
-    </CardContainer>
+    <Fragment>
+      {loader && (
+        <CardContainer>
+          <div className={'image shimmer-block '} />
+          <TextSection>
+            <div className={'med shimmer-block '} />
+            <div className={'long shimmer-block '} />
+            <div className={'long shimmer-block '} />
+            <div className={'long shimmer-block '} />
+            <div className={'short shimmer-block '} />
+          </TextSection>
+        </CardContainer>
+      )}
+      {!loader && (
+        <CardContainer>
+          <Image image={recipe.image} />
+          <TextSection>
+            <h3>{recipe.label}</h3>
+            <p>{recipe.ingredientLines}</p>
+            <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>
+          </TextSection>
+        </CardContainer>
+      )}
+    </Fragment>
   )
 }
 

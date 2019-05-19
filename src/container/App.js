@@ -65,7 +65,7 @@ class App extends Component {
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} />
-          {this.state.displayData !== undefined && <Recipes recipes={this.state.displayData} />}
+          <Recipes recipes={this.state.displayData} />
           <Recipes recipes={espresso} />
           <Recipes recipes={frappuccino} />
           {/* <Blog /> */}

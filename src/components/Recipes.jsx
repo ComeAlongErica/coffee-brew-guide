@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 
 import Card from './parts/Card'
@@ -15,14 +15,21 @@ const CardScrollContainer = styled.div`
 `
 const Recipes = props => {
   const { recipes } = props
-console.log(recipes)
+
   return (
-      <CardScrollContainer>
-        {recipes &&
-          recipes.map((recipe, idx) => {
-            return <Card recipe={recipe} key={idx} />
-          })}
-      </CardScrollContainer>
+    <CardScrollContainer>
+      {recipes &&
+        recipes.map((recipe, idx) => {
+          return <Card recipe={recipe.recipe} key={idx} />
+        })}
+      {!recipes && (
+        <Fragment>
+          <Card loader />
+          <Card loader />
+          <Card loader />
+        </Fragment>
+      )}
+    </CardScrollContainer>
   )
 }
 
