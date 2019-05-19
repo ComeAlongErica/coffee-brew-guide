@@ -3,10 +3,10 @@ This app will be a coffee brew guide. My goals for this project will be to creat
 
 **Focus Points**
 - Create a global theme to provide and light and dark theme
-- Create global buttons and modal for delivery of different types of information
+- Create higher-order components for buttons and modal
 - Experiment with custom animations
-- Create a beautiful app which delivers information clearly and efficiently
 - Focus on user interaction on touch screen devices (on touch/swipe)
+- Use lifecycle methods (I started react with hooks, so I never had the chance to use them.)
 
 ## Available Scripts
 
