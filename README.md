@@ -7,6 +7,7 @@ This app will be a coffee brew guide. My goals for this project will be to creat
 - Experiment with custom animations
 - Focus on user interaction on touch screen devices (on touch/swipe)
 - Use lifecycle methods (I started react with hooks, so I never had the chance to use them.)
+- Create style loader card when data is not yet available
 
 ## Available Scripts
 
