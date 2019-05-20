@@ -13,12 +13,12 @@ const SearchInput = styled.input`
 outline: none;
 width: 100%;
 height: 55px;
-background-color: white;
+background-color: ${props => props.theme.backgroundSecondary};
 border: none;
 box-shadow: ${props => props.theme.dropShadow};
 border-radius: 30px 0 30px 30px;
 font-size: 16px;
-color: ${props => props.theme.backgroundSeconary};
+color: ${props => props.theme.backgroundSecondary};
 padding-left: 50px;
 transition: all .3s ease;
 :focus {

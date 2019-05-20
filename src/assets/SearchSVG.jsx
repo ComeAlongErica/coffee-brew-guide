@@ -5,7 +5,7 @@ const SearchIcon = styled.svg`
 position: ${props => props.position || 'relative'};
 width: ${props => props.width || '24'}px;
 height: ${props => props.height || '24'}px;
-stroke: ${props => props.stroke || props.theme.backgroundSeconary};
+stroke: ${props => props.stroke || props.theme.backgroundSecondary};
 top: ${props => props.top || ''}px;
 left: ${props => props.left || ''}px;
 `

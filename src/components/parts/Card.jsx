@@ -8,7 +8,7 @@ const CardContainer = styled.div`
   border: 1px solid red;
   padding: 10px;
   margin: 10px;
-  background-color: white;
+  background-color: ${props => props.theme.backgroundSecondary};
   border: none;
   border-radius: 10px;
   box-shadow: ${props => props.theme.dropShadow};
@@ -46,7 +46,7 @@ const CardContainer = styled.div`
     animation-iteration-count: infinite;
     animation-name: placeHolderShimmer;
     animation-timing-function: linear;
-    background: linear-gradient(to right, rgba(9, 30, 66, 0.02) 0px, rgba(9, 30, 66, 0.065) 50px, rgba(9, 30, 66, 0.02) 100px);
+    background: ${props => props.theme.shimmer};
   }
   @keyframes placeHolderShimmer {
     0% {

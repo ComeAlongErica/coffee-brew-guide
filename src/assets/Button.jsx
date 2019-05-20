@@ -5,11 +5,12 @@ const GlobalButton = styled.button`
 padding: 0 20px;
 height: 35px;
 margin: 10px;
-background-color: white;
+background-color: ${props => props.theme.backgroundSecondary};
 color: ${props => props.theme.fontSecondary};
 font-weight: bold;
 font-size: 12px;
 box-shadow: ${props => props.theme.dropShadow};
+border: none;
 border-radius: 30px;
 :hover {
     box-shadow: ${props => props.theme.dropShadowHover};

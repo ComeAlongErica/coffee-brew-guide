@@ -16,7 +16,7 @@ const ToggleLabel = styled.label`
   font-size: 40px;
   height: 25px;
   width: 50px;
-  background: ${props => props.theme.backgroundSeconary};
+  background: ${props => props.theme.backgroundSecondary};
   border-radius: 1em;
 `
 
@@ -34,7 +34,7 @@ const Slider = styled.div`
     height: 25px;
     width: 25px;
     border-radius: 1em;
-    background: white;
+    background: ${props => props.theme.toggle};
     box-shadow: ${props => props.theme.dropShadow};
     transition: all 300ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
 `
