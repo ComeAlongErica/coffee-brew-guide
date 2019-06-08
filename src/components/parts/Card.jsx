@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
@@ -99,7 +99,7 @@ const TextSection = styled.div`
 const Card = props => {
   const { recipe, loader } = props
   return (
-    <Fragment>
+    <>
       {loader && (
         <CardContainer>
           <div className={'image shimmer-block '} />
@@ -122,7 +122,7 @@ const Card = props => {
           </TextSection>
         </CardContainer>
       )}
-    </Fragment>
+    </>
   )
 }
 

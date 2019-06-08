@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 import Card from './parts/Card'
@@ -23,11 +23,11 @@ const Recipes = props => {
           return <Card recipe={recipe.recipe} key={idx} />
         })}
       {!recipes && (
-        <Fragment>
+        <>
           <Card loader />
           <Card loader />
           <Card loader />
-        </Fragment>
+        </>
       )}
     </CardScrollContainer>
   )
