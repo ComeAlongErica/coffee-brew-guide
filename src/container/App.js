@@ -19,12 +19,13 @@ class App extends Component {
     this.state = {
       displayData: undefined,
       theme: true,
+      firstLoad: true,
       modal: []
     }
   }
 
   componentDidUpdate () {
-    if (this.state.displayData !== undefined) {
+    if (this.state.displayData === undefined) {
       this.getRecipeData().then(data => {
         data && this.setState({ displayData: data.hits })
       })
@@ -32,9 +33,12 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.getRecipeData().then(data => {
-      data && this.setState({ displayData: data.hits })
-    })
+    if (this.state.firstLoad) {
+      this.getRecipeData().then(data => {
+        data && this.setState({ displayData: data.hits })
+        this.state.firstLoad && this.setState({ firstLoad: false })
+      })
+    }
   }
 
   getRecipeData = query => {
