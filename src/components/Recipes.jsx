@@ -27,6 +27,8 @@ const Recipes = props => {
           <Card loader />
           <Card loader />
           <Card loader />
+          <Card loader />
+          <Card loader />
         </>
       )}
     </CardScrollContainer>
