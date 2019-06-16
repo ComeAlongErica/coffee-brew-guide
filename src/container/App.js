@@ -18,6 +18,7 @@ class App extends Component {
     super(props)
     this.state = {
       displayData: undefined,
+      searchData: undefined,
       theme: true,
       firstLoad: true,
       modal: []
@@ -57,6 +58,12 @@ class App extends Component {
       .then(res => res.json())
       .then(result => result)
       .catch(error => console.error(error))
+  }
+
+  handleSearchQuery = search => {
+    this.getRecipeData().then(data => {
+      data && this.setState({ searchData: data.hits })
+    })
   }
 
   handleToggleTheme = () => {
