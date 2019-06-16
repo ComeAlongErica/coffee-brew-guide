@@ -30,16 +30,16 @@ const CardContainer = styled.div`
     height: 20px;
   }
   .short {
-    width: 50px;
-    animation-duration: 50s;
+    width: 100px;
+    animation-duration: 30s;
   }
   .med {
     width: 150px;
-    animation-duration: 27s;
+    animation-duration: 30s;
   }
   .long {
     width: 200px;
-    animation-duration: 20s;
+    animation-duration: 30s;
   }
   && div.shimmer-block {
     animation-fill-mode: forwards;
