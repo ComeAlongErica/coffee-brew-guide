@@ -16,11 +16,11 @@ const ButtonsContainer = styled.div`
 
 
 const Header = props => {
-  const { toggleTheme } = props
+  const { toggleTheme, handleSearchQuery } = props
 
   return (
     <HeaderContainer>
-      <SearchBar />
+      <SearchBar handleSearchQuery={handleSearchQuery} />
       <ButtonsContainer>
         <User />
         <Save />

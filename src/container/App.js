@@ -75,7 +75,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
-          <Header toggleTheme={this.handleToggleTheme} />
+          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery}/>
           <Recipes recipes={this.state.displayData} />
           <Recipes recipes={espresso} />
           <Recipes recipes={frappuccino} />
