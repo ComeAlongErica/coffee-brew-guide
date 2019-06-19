@@ -11,6 +11,7 @@ const AppContainer = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: ${props => props.theme.background};
+  position: relative;
 `
 
 class App extends Component {
@@ -22,7 +23,7 @@ class App extends Component {
       theme: true,
       firstLoad: true,
       displayModal: false,
-      modalData: null,
+      modalData: null
     }
   }
 
@@ -71,12 +72,15 @@ class App extends Component {
     this.setState({ theme: !this.state.theme })
   }
 
-  handleDisplayModal= data => {
+  handleDisplayModal = data => {
     this.setState({ displayModal: true, modalData: data })
   }
 
-  handleCloseModal= data => {
-    this.setState({ displayModal: false })
+  handleCloseModal = closeModal => {
+    console.log(closeModal)
+    if (closeModal) {
+      this.setState({ displayModal: false })
+    }
   }
 
   render () {
@@ -84,12 +88,16 @@ class App extends Component {
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
-          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery}/>
-          {this.state.searchData && <Recipes recipes={this.state.searchData} handleDisplayModal={this.handleDisplayModal} />}
+          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} />
+          {this.state.searchData && (
+            <Recipes recipes={this.state.searchData} handleDisplayModal={this.handleDisplayModal} />
+          )}
           <Recipes recipes={this.state.displayData} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={espresso} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={frappuccino} handleDisplayModal={this.handleDisplayModal} />
-          {this.state.displayModal && <Modal modalData={this.state.modalData} handleCloseModal={this.handleCloseModal}/>}
+          {this.state.displayModal && (
+            <Modal modalData={this.state.modalData} handleCloseModal={this.handleCloseModal} />
+          )}
         </AppContainer>
       </ThemeProvider>
     )
