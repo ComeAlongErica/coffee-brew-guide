@@ -61,7 +61,7 @@ class App extends Component {
   }
 
   handleSearchQuery = search => {
-    this.getRecipeData().then(data => {
+    this.getRecipeData(search).then(data => {
       data && this.setState({ searchData: data.hits })
     })
   }
@@ -76,6 +76,7 @@ class App extends Component {
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery}/>
+          {this.state.searchData && <Recipes recipes={this.state.searchData} />}
           <Recipes recipes={this.state.displayData} />
           <Recipes recipes={espresso} />
           <Recipes recipes={frappuccino} />
