@@ -22,6 +22,7 @@ class App extends Component {
       searchData: undefined,
       theme: true,
       firstLoad: true,
+      modalFirstRender: false,
       displayModal: false,
       modalData: null
     }
@@ -73,7 +74,7 @@ class App extends Component {
   }
 
   handleDisplayModal = data => {
-    this.setState({ displayModal: true, modalData: data })
+    this.setState({ modalFirstRender: true, displayModal: true, modalData: data })
   }
 
   handleCloseModal = closeModal => {
@@ -95,11 +96,11 @@ class App extends Component {
           <Recipes recipes={this.state.displayData} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={espresso} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={frappuccino} handleDisplayModal={this.handleDisplayModal} />
-          <Modal
+          {this.state.modalFirstRender && <Modal
             modalData={this.state.modalData}
             displayModal={this.state.displayModal}
             handleCloseModal={this.handleCloseModal}
-          />
+          />}
         </AppContainer>
       </ThemeProvider>
     )
