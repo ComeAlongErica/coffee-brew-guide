@@ -5,7 +5,7 @@ import { lightTheme, darkTheme } from '../assets/ThemeProvider'
 import { espresso, frappuccino } from '../assets/utils'
 import Header from '../components/header/Header'
 import Recipes from '../components/Recipes'
-// import Blog from '../components/Blog'
+import Modal from '../components/Modal'
 
 const AppContainer = styled.div`
   width: 100vw;
@@ -80,7 +80,7 @@ class App extends Component {
           <Recipes recipes={this.state.displayData} />
           <Recipes recipes={espresso} />
           <Recipes recipes={frappuccino} />
-          {/* <Blog /> */}
+          <Modal />
         </AppContainer>
       </ThemeProvider>
     )
