@@ -14,13 +14,13 @@ const CardScrollContainer = styled.div`
   }
 `
 const Recipes = props => {
-  const { recipes } = props
+  const { recipes, handleDisplayModal } = props
 
   return (
     <CardScrollContainer>
       {recipes &&
         recipes.map((recipe, idx) => {
-          return <Card recipe={recipe.recipe} key={idx} />
+          return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} />
         })}
       {!recipes && (
         <>

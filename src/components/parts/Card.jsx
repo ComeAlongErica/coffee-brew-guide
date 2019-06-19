@@ -5,7 +5,6 @@ const CardContainer = styled.div`
   height: 160px;
   min-width: 375px;
   overflow: hidden;
-  border: 1px solid red;
   padding: 10px;
   margin: 10px;
   background-color: ${props => props.theme.backgroundSecondary};
@@ -97,7 +96,7 @@ const TextSection = styled.div`
 `
 
 const Card = props => {
-  const { recipe, loader } = props
+  const { recipe, loader, handleDisplayModal } = props
   return (
     <>
       {loader && (
@@ -113,7 +112,7 @@ const Card = props => {
         </CardContainer>
       )}
       {!loader && (
-        <CardContainer>
+        <CardContainer onClick={() => handleDisplayModal(recipe)} >
           <Image image={recipe.image} />
           <TextSection>
             <h3>{recipe.label}</h3>

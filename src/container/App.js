@@ -21,7 +21,8 @@ class App extends Component {
       searchData: undefined,
       theme: true,
       firstLoad: true,
-      modal: []
+      displayModal: false,
+      modalData: null,
     }
   }
 
@@ -70,17 +71,25 @@ class App extends Component {
     this.setState({ theme: !this.state.theme })
   }
 
+  handleDisplayModal= data => {
+    this.setState({ displayModal: true, modalData: data })
+  }
+
+  handleCloseModal= data => {
+    this.setState({ displayModal: false })
+  }
+
   render () {
     let displayTheme = this.state.theme ? lightTheme : darkTheme
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery}/>
-          {this.state.searchData && <Recipes recipes={this.state.searchData} />}
-          <Recipes recipes={this.state.displayData} />
-          <Recipes recipes={espresso} />
-          <Recipes recipes={frappuccino} />
-          <Modal />
+          {this.state.searchData && <Recipes recipes={this.state.searchData} handleDisplayModal={this.handleDisplayModal} />}
+          <Recipes recipes={this.state.displayData} handleDisplayModal={this.handleDisplayModal} />
+          <Recipes recipes={espresso} handleDisplayModal={this.handleDisplayModal} />
+          <Recipes recipes={frappuccino} handleDisplayModal={this.handleDisplayModal} />
+          {this.state.displayModal && <Modal modalData={this.state.modalData} handleCloseModal={this.handleCloseModal}/>}
         </AppContainer>
       </ThemeProvider>
     )
