@@ -9,6 +9,29 @@ const Overlay = styled.div`
   width: 100vw;
   background-color: ${props => props.theme.fontMain + 'cf'};
   z-index: 10;
+  animation: ${props => (props.displayModal ? 'unfoldIn' : 'unfoldOut')} 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  @keyframes unfoldIn {
+    0% {
+      transform: scaleY(0.005) scaleX(0);
+    }
+    15% {
+      transform: scaleY(0.005) scaleX(1);
+    }
+    100% {
+      transform: scaleY(1) scaleX(1);
+    }
+  }
+  @keyframes unfoldOut {
+    0% {
+      transform: scaleY(1) scaleX(1);
+    }
+    70% {
+      transform: scaleY(0.005) scaleX(1);
+    }
+    100% {
+      transform: scaleY(0.005) scaleX(0);
+    }
+  }
 `
 const ModalContainer = styled.div`
   position: fixed;
@@ -27,12 +50,12 @@ const ModalContainer = styled.div`
 `
 
 const Modal = props => {
-  const { modalData, handleCloseModal } = props
+  const { modalData, handleCloseModal, displayModal } = props
 
   return (
     <>
-      <Overlay onClick={() => handleCloseModal(true)} />
-      <ModalContainer onClick={() => handleCloseModal(false)}>HI</ModalContainer>
+      <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
+      {/* <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>HI</ModalContainer> */}
     </>
   )
 }

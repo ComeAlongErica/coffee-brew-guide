@@ -95,9 +95,11 @@ class App extends Component {
           <Recipes recipes={this.state.displayData} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={espresso} handleDisplayModal={this.handleDisplayModal} />
           <Recipes recipes={frappuccino} handleDisplayModal={this.handleDisplayModal} />
-          {this.state.displayModal && (
-            <Modal modalData={this.state.modalData} handleCloseModal={this.handleCloseModal} />
-          )}
+          <Modal
+            modalData={this.state.modalData}
+            displayModal={this.state.displayModal}
+            handleCloseModal={this.handleCloseModal}
+          />
         </AppContainer>
       </ThemeProvider>
     )
