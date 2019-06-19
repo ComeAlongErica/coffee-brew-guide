@@ -38,15 +38,39 @@ const ModalContainer = styled.div`
   z-index: 11;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  min-height: 500px;
-  min-width: 450px;
+  height: 500px;
+  width: 400px;
   padding: 10px;
   margin: 10px;
   background-color: ${props => props.theme.backgroundSecondary};
   border: none;
   border-radius: 10px;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  transform: translate(-50%, -50%);
+  transform-origin: top left;
+  animation: ${props => (props.displayModal ? 'popIn' : 'popOut')} 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  @keyframes popIn {
+    0% {
+      transform: scaleY(0) scaleX(0) translate(-50%, -50%);
+    }
+    55% {
+      transform: scaleY(0) scaleX(0) translate(-50%, -50%);
+    }
+    100% {
+      transform: scaleY(1) scaleX(1) translate(-50%, -50%);
+    }
+  }
+  @keyframes popOut {
+    0% {
+      transform: scaleY(1) scaleX(1) translate(-50%, -50%);
+    }
+    30% {
+      transform: scaleY(0) scaleX(0) translate(-50%, -50%);
+    }
+    100% {
+      transform: scaleY(0) scaleX(0) translate(-50%, -50%);
+    }
+  }
 `
 
 const Modal = props => {
@@ -55,7 +79,14 @@ const Modal = props => {
   return (
     <>
       <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
-      {/* <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>HI</ModalContainer> */}
+      <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>
+        <p>hi</p>
+        <p>hi</p>
+        <p>hi</p>
+        <p>hi</p>
+        <p>hi</p>
+        <p>hi</p>
+      </ModalContainer>
     </>
   )
 }
