@@ -9,7 +9,10 @@ const Overlay = styled.div`
   width: 100vw;
   background-color: ${props => props.theme.fontMain + 'cf'};
   z-index: 10;
-  animation: ${props => (props.displayModal ? 'unfoldIn' : 'unfoldOut')} 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: ${props =>
+    props.displayModal
+      ? 'unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards'
+      : 'fadeOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards'};
   @keyframes unfoldIn {
     0% {
       transform: scaleY(0.005) scaleX(0);
@@ -21,14 +24,17 @@ const Overlay = styled.div`
       transform: scaleY(1) scaleX(1);
     }
   }
-  @keyframes unfoldOut {
+  @keyframes fadeOut {
     0% {
+      opacity: 1;
       transform: scaleY(1) scaleX(1);
     }
-    70% {
-      transform: scaleY(0.005) scaleX(1);
+    50% {
+      opacity: 0;
+      transform: scaleY(1) scaleX(1);
     }
     100% {
+      opacity: 0;
       transform: scaleY(0.005) scaleX(0);
     }
   }
@@ -48,7 +54,7 @@ const ModalContainer = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   transform: translate(-50%, -50%);
   transform-origin: top left;
-  animation: ${props => (props.displayModal ? 'popIn' : 'popOut')} 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  animation: ${props => (props.displayModal ? 'popIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards' : 'fadeOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards')};
   @keyframes popIn {
     0% {
       transform: scaleY(0) scaleX(0) translate(-50%, -50%);
@@ -60,14 +66,17 @@ const ModalContainer = styled.div`
       transform: scaleY(1) scaleX(1) translate(-50%, -50%);
     }
   }
-  @keyframes popOut {
+  @keyframes fadeOut {
     0% {
+      opacity: 1;
       transform: scaleY(1) scaleX(1) translate(-50%, -50%);
     }
-    30% {
-      transform: scaleY(0) scaleX(0) translate(-50%, -50%);
+    75% {
+      opacity: 0;
+      transform: scaleY(1) scaleX(1) translate(-50%, -50%);
     }
     100% {
+      opacity: 0;
       transform: scaleY(0) scaleX(0) translate(-50%, -50%);
     }
   }
