@@ -9,7 +9,7 @@ const CardScrollContainer = styled.div`
   min-width: 100%;
   display: flex;
   overflow-x: auto;
-  overflow-y: visible;
+  padding: 6px;
   transition: .4s ease-in-out;
   transform: translateX(${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')});
   ::-webkit-scrollbar {
