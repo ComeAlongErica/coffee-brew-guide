@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-  height: ${props => (props.expand || props.bigCard ? 250 : 160)}px;
+  min-height: ${props => (props.expand || props.bigCard ? 250 : 160)}px;
+  flex-grow: 1;
   min-width: 375px;
   overflow: hidden;
   padding: 10px;
@@ -12,7 +13,6 @@ const CardContainer = styled.div`
   border-radius: 10px;
   box-shadow: ${props => props.theme.dropShadow};
   display: flex;
-  align-items: center;
   transition: 0.3s ease-in-out;
   :hover {
     cursor: pointer;
@@ -73,8 +73,8 @@ const Image = styled.div`
   min-width: 150px;
   overflow: hidden;
   border-radius: 10px;
-  margin-right: 15px;
-`
+  margin: 15px 15px 15px 0;
+  `
 
 const TextSection = styled.div`
   color: ${props => props.theme.fontSecondary};

@@ -5,11 +5,10 @@ import Card from './parts/Card'
 
 const CardScrollContainer = styled.div`
   margin: 5px 0 0;
-  min-height: 200px;
   min-width: 100%;
   display: flex;
   overflow-x: auto;
-  padding: 6px;
+  padding: 6px 0;
   transition: .4s ease-in-out;
   transform: translateX(${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')});
   ::-webkit-scrollbar {
