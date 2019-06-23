@@ -16,7 +16,7 @@ const CardScrollContainer = styled.div`
   }
 `
 const Recipes = props => {
-  const { recipes, handleDisplayModal, scrollDirection } = props
+  const { recipes, handleDisplayModal, scrollDirection, expand } = props
   const [direction, setDirection] = useState(scrollDirection)
   let loaderCards = [1, 2, 3, 4, 5]
   useEffect(
@@ -31,7 +31,7 @@ const Recipes = props => {
     <CardScrollContainer enterDirection={direction}>
       {recipes &&
         recipes.map((recipe, idx) => {
-          return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} />
+          return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand}/>
         })}
       {!recipes &&
         loaderCards.map((card, idx) => {

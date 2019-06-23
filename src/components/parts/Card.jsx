@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-  height: 160px;
+  height: ${props => props.expand ? 250 : 160}px;
   min-width: 375px;
   overflow: hidden;
   padding: 10px;
@@ -59,10 +59,10 @@ const CardContainer = styled.div`
 
 const Image = styled.div`
   background: url(${props => props.image});
-  background-size: auto 150px;
+  background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
-  height: 150px;
+  height: ${props => props.expand ? 250 : 150}px;
   min-width: 150px;
   overflow: hidden;
   border-radius: 10px;
@@ -74,7 +74,7 @@ const TextSection = styled.div`
   height: 100%;
   h3 {
     margin: 10px 0 0 0;
-    font-size: 16px;
+    font-size: ${props => props.expand ? 24 : 16}px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -84,7 +84,7 @@ const TextSection = styled.div`
     font-size: 13px;
     line-height: 18px;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: ${props => props.expand ? 7 : 4};
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -96,8 +96,7 @@ const TextSection = styled.div`
 `
 
 const Card = props => {
-  const { recipe, loader, handleDisplayModal } = props
-
+  const { recipe, loader, handleDisplayModal, expand } = props
   return (
     <>
       {loader && (
@@ -113,9 +112,9 @@ const Card = props => {
         </CardContainer>
       )}
       {!loader && (
-        <CardContainer onClick={() => handleDisplayModal(recipe)} >
-          <Image image={recipe.image} />
-          <TextSection>
+        <CardContainer onClick={() => handleDisplayModal(recipe)} expand={expand} >
+          <Image image={recipe.image} expand={expand}/>
+          <TextSection expand={expand} >
             <h3>{recipe.label}</h3>
             <p>{recipe.ingredientLines}</p>
             <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>
