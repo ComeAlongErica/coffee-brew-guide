@@ -78,7 +78,6 @@ class App extends Component {
   }
 
   handleCloseModal = closeModal => {
-    console.log(closeModal)
     if (closeModal) {
       this.setState({ displayModal: false })
     }
@@ -86,21 +85,25 @@ class App extends Component {
 
   render () {
     let displayTheme = this.state.theme ? lightTheme : darkTheme
+    let displayCats = [this.state.searchData, this.state.displayData, espresso, frappuccino]
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} />
-          {this.state.searchData && (
-            <Recipes recipes={this.state.searchData} handleDisplayModal={this.handleDisplayModal} />
+          {displayCats.map((cat, idx) => {
+            if (idx === 0 && cat) {
+              return <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} expand />
+            } else if (cat) {
+              return <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} />
+            }
+          })}
+          {this.state.modalFirstRender && (
+            <Modal
+              modalData={this.state.modalData}
+              displayModal={this.state.displayModal}
+              handleCloseModal={this.handleCloseModal}
+            />
           )}
-          <Recipes recipes={this.state.displayData} handleDisplayModal={this.handleDisplayModal} />
-          <Recipes recipes={espresso} handleDisplayModal={this.handleDisplayModal} />
-          <Recipes recipes={frappuccino} handleDisplayModal={this.handleDisplayModal} />
-          {this.state.modalFirstRender && <Modal
-            modalData={this.state.modalData}
-            displayModal={this.state.displayModal}
-            handleCloseModal={this.handleCloseModal}
-          />}
         </AppContainer>
       </ThemeProvider>
     )
