@@ -40,7 +40,7 @@ const Overlay = styled.div`
   }
 `
 const ModalContainer = styled.div`
-  position: fixed;
+  position: absolute;
   z-index: 11;
   top: 50%;
   left: 50%;
@@ -54,7 +54,7 @@ const ModalContainer = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   transform: translate(-50%, -50%);
   transform-origin: top left;
-  animation: ${props => (props.displayModal ? 'popIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards' : 'fadeOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards')};
+  animation: ${props => (props.displayModal ? 'popIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards' : 'fadeOutContainer 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards')};
   @keyframes popIn {
     0% {
       transform: scaleY(0) scaleX(0) translate(-50%, -50%);
@@ -66,7 +66,7 @@ const ModalContainer = styled.div`
       transform: scaleY(1) scaleX(1) translate(-50%, -50%);
     }
   }
-  @keyframes fadeOut {
+  @keyframes fadeOutContainer {
     0% {
       opacity: 1;
       transform: scaleY(1) scaleX(1) translate(-50%, -50%);
