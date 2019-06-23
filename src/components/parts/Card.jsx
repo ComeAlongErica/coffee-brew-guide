@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-  height: ${props => props.expand ? 250 : 160}px;
+  height: ${props => (props.expand || props.bigCard ? 250 : 160)}px;
   min-width: 375px;
   overflow: hidden;
   padding: 10px;
@@ -13,6 +13,11 @@ const CardContainer = styled.div`
   box-shadow: ${props => props.theme.dropShadow};
   display: flex;
   align-items: center;
+  transition: 0.3s ease-in-out;
+  :hover {
+    cursor: pointer;
+  }
+  /* Everything below is loader card and animations */
   .image {
     height: 150px;
     min-width: 150px;
@@ -62,7 +67,8 @@ const Image = styled.div`
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
-  height: ${props => props.expand ? 250 : 150}px;
+  transition: 0.3s ease-in-out;
+  height: ${props => (props.expand || props.bigCard ? 250 : 150)}px;
   min-width: 150px;
   overflow: hidden;
   border-radius: 10px;
@@ -74,7 +80,8 @@ const TextSection = styled.div`
   height: 100%;
   h3 {
     margin: 10px 0 0 0;
-    font-size: ${props => props.expand ? 24 : 16}px;
+    transition: 0.3s ease-in-out;
+    font-size: ${props => (props.expand ? 24 : 16)}px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -84,7 +91,7 @@ const TextSection = styled.div`
     font-size: 13px;
     line-height: 18px;
     display: -webkit-box;
-    -webkit-line-clamp: ${props => props.expand ? 7 : 4};
+    -webkit-line-clamp: ${props => (props.expand ? 7 : props.bigCard ? 9 : 4)};
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -97,6 +104,9 @@ const TextSection = styled.div`
 
 const Card = props => {
   const { recipe, loader, handleDisplayModal, expand } = props
+  const [bigCard, setBigCard] = useState(false)
+
+  const enlargeCard = () => setBigCard(!bigCard)
   return (
     <>
       {loader && (
@@ -112,9 +122,14 @@ const Card = props => {
         </CardContainer>
       )}
       {!loader && (
-        <CardContainer onClick={() => handleDisplayModal(recipe)} expand={expand} >
-          <Image image={recipe.image} expand={expand}/>
-          <TextSection expand={expand} >
+        <CardContainer
+          onClick={() => handleDisplayModal(recipe)}
+          expand={expand}
+          bigCard={bigCard}
+          onMouseEnter={enlargeCard}
+          onMouseLeave={enlargeCard}>
+          <Image image={recipe.image} expand={expand} bigCard={bigCard} />
+          <TextSection expand={expand} bigCard={bigCard}>
             <h3>{recipe.label}</h3>
             <p>{recipe.ingredientLines}</p>
             <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>

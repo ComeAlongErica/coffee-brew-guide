@@ -8,8 +8,10 @@ import Recipes from '../components/Recipes'
 import Modal from '../components/Modal'
 
 const AppContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: ${props => props.theme.background};
   position: relative;
 `
@@ -91,12 +93,27 @@ class App extends Component {
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} />
           {displayCats.map((cat, idx) => {
-            let scrollDirection = idx % 2 === 0 ? true : false
+            let scrollDirection = idx % 2 === 0
             let card = null
             if (idx === 0 && cat) {
-              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} scrollDirection={scrollDirection} expand />
+              card = (
+                <Recipes
+                  key={idx}
+                  recipes={cat}
+                  handleDisplayModal={this.handleDisplayModal}
+                  scrollDirection={scrollDirection}
+                  expand
+                />
+              )
             } else if (cat) {
-              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} scrollDirection={scrollDirection} />
+              card = (
+                <Recipes
+                  key={idx}
+                  recipes={cat}
+                  handleDisplayModal={this.handleDisplayModal}
+                  scrollDirection={scrollDirection}
+                />
+              )
             }
             return card
           })}
