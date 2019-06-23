@@ -14,6 +14,7 @@ const AppContainer = styled.div`
   height: 100%;
   background-color: ${props => props.theme.background};
   position: relative;
+  padding-bottom: 50px;
 `
 
 class App extends Component {
