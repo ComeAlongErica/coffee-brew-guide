@@ -40,7 +40,7 @@ const Overlay = styled.div`
   }
 `
 const ModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 11;
   top: 50%;
   left: 50%;
