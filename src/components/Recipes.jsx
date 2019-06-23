@@ -9,7 +9,8 @@ const CardScrollContainer = styled.div`
   min-width: 100%;
   display: flex;
   overflow-x: auto;
-  transition: 1s ease-in-out;
+  overflow: visible;
+  transition: .4s ease-in-out;
   transform: translateX(${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')});
   ::-webkit-scrollbar {
     display: none;
@@ -35,7 +36,7 @@ const Recipes = props => {
         })}
       {!recipes &&
         loaderCards.map((card, idx) => {
-          return <Card key={idx} />
+          return <Card key={idx} loader />
         })}
     </CardScrollContainer>
   )

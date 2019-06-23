@@ -16,6 +16,7 @@ const CardContainer = styled.div`
   transition: 0.3s ease-in-out;
   :hover {
     cursor: pointer;
+    box-shadow: ${props => props.theme.dropShadowHover};
   }
   /* Everything below is loader card and animations */
   .image {

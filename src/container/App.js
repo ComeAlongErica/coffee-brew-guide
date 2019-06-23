@@ -106,7 +106,7 @@ class App extends Component {
                   expand
                 />
               )
-            } else if (cat) {
+            } else if (cat || idx === 1) {
               card = (
                 <Recipes
                   key={idx}
