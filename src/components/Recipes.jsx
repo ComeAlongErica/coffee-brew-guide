@@ -15,22 +15,17 @@ const CardScrollContainer = styled.div`
 `
 const Recipes = props => {
   const { recipes, handleDisplayModal } = props
-
+  let loaderCards = [1,2,3,4,5]
   return (
     <CardScrollContainer>
       {recipes &&
         recipes.map((recipe, idx) => {
           return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} />
         })}
-      {!recipes && (
-        <>
-          <Card loader />
-          <Card loader />
-          <Card loader />
-          <Card loader />
-          <Card loader />
-        </>
-      )}
+      {!recipes && 
+      loaderCards.map((card, idx) => {
+        return <Card key={idx} />
+      })}
     </CardScrollContainer>
   )
 }

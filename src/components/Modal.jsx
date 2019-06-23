@@ -82,19 +82,33 @@ const ModalContainer = styled.div`
   }
 `
 
+const Image = styled.div`
+  background: url(${props => props.image});
+  background-size: auto 150px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 150px;
+  min-width: 150px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-right: 15px;`
+const TextSection = styled.div``
+
 const Modal = props => {
   const { modalData, handleCloseModal, displayModal } = props
-
+console.log(modalData)
   return (
     <>
       <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
       <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>
-        <p>hi</p>
-        <p>hi</p>
-        <p>hi</p>
-        <p>hi</p>
-        <p>hi</p>
-        <p>hi</p>
+        <>
+        <Image image={modalData.image} />
+          <TextSection>
+            <h3>{modalData.label}</h3>
+            <p>{modalData.ingredientLines}</p>
+            <p className={'cals'}>Calories: {Math.ceil(modalData.calories / modalData.yield)}</p>
+          </TextSection>
+        </>
       </ModalContainer>
     </>
   )
