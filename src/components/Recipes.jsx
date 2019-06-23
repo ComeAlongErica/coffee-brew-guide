@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import Card from './parts/Card'
@@ -9,23 +9,34 @@ const CardScrollContainer = styled.div`
   min-width: 100%;
   display: flex;
   overflow-x: auto;
+  transition: 1s ease-in-out;
+  transform: translateX(${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')});
   ::-webkit-scrollbar {
     display: none;
   }
 `
 const Recipes = props => {
-  const { recipes, handleDisplayModal } = props
-  let loaderCards = [1,2,3,4,5]
+  const { recipes, handleDisplayModal, scrollDirection } = props
+  const [direction, setDirection] = useState(scrollDirection)
+  let loaderCards = [1, 2, 3, 4, 5]
+  useEffect(
+    () => {
+      setTimeout(() => {
+        setDirection('center')
+      }, 0)
+    },
+    [scrollDirection]
+  )
   return (
-    <CardScrollContainer>
+    <CardScrollContainer enterDirection={direction}>
       {recipes &&
         recipes.map((recipe, idx) => {
           return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} />
         })}
-      {!recipes && 
-      loaderCards.map((card, idx) => {
-        return <Card key={idx} />
-      })}
+      {!recipes &&
+        loaderCards.map((card, idx) => {
+          return <Card key={idx} />
+        })}
     </CardScrollContainer>
   )
 }

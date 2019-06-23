@@ -97,6 +97,7 @@ const TextSection = styled.div`
 
 const Card = props => {
   const { recipe, loader, handleDisplayModal } = props
+
   return (
     <>
       {loader && (

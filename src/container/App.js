@@ -91,11 +91,12 @@ class App extends Component {
         <AppContainer className={'appContainer'}>
           <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} />
           {displayCats.map((cat, idx) => {
+            let scrollDirection = idx % 2 === 0 ? true : false
             let card = null
             if (idx === 0 && cat) {
-              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} expand />
+              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} scrollDirection={scrollDirection} expand />
             } else if (cat) {
-              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} />
+              card =  <Recipes key={idx} recipes={cat} handleDisplayModal={this.handleDisplayModal} scrollDirection={scrollDirection} />
             }
             return card
           })}
