@@ -1,9 +1,9 @@
-## Coffee Brew App
-This app will be a coffee brew guide. My goals for this project will be to create a minimal, searchable app with beautiful guides on how to brew coffee.
+## Recipe Finder
+This app will be a recipe finder app using API the Edamam. My goals for this project will be to create a minimal, searchable app with options to save and come back to recipes.
 
 **Focus Points**
 - Create a global theme to provide and light and dark theme
-- Create higher-order components for buttons and modal
+- Create higher-order components for buttons, modal, and cards
 - Experiment with custom animations
 - Focus on user interaction on touch screen devices (on touch/swipe)
 - Use lifecycle methods (I started react with hooks, so I never had the chance to use them.)
