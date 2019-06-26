@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
 import { lightTheme, darkTheme } from '../assets/ThemeProvider'
-import { espresso, frappuccino } from '../assets/utils'
+import { bakedTofu, seitan } from '../assets/utils'
 import Header from '../components/header/Header'
 import Recipes from '../components/Recipes'
 import Modal from '../components/Modal'
@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   getRecipeData = query => {
-    let searchQuery = query || 'latte'
+    let searchQuery = query || 'chickpeas'
     let url = `https://api.edamam.com/search?q=${searchQuery}&app_id=c0958c7a&app_key=b4e42092e83e921feb2a01415d4496f5`
 
     return fetch(url, {
@@ -68,6 +68,7 @@ class App extends Component {
 
   handleSearchQuery = search => {
     this.getRecipeData(search).then(data => {
+      console.log(JSON.stringify(data))
       data && this.setState({ searchData: data.hits })
     })
   }
@@ -88,7 +89,7 @@ class App extends Component {
 
   render () {
     let displayTheme = this.state.theme ? lightTheme : darkTheme
-    let displayCats = [this.state.searchData, this.state.displayData, espresso, frappuccino]
+    let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
