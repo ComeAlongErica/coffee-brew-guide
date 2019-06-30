@@ -51,8 +51,9 @@ const Recipes = props => {
   )
   const displayArrow = () => setShowArrow(!showArrow)
   const handleScroll = () => {
-    let containerIdx = index === 0 ? index : index - 1
-    const scrollContainer = document.getElementsByClassName('card-scroll-container')[containerIdx]
+    const scrollContainers = document.getElementsByClassName('card-scroll-container')
+    let containerIdx = scrollContainers.length === 4 ? index : index - 1
+    const scrollContainer = scrollContainers[containerIdx]
     let halfWindowSize = window.innerWidth / 2
     let currentPosition = scrollContainer.scrollLeft
     let scrollDistance = currentPosition + halfWindowSize
