@@ -68,7 +68,6 @@ class App extends Component {
 
   handleSearchQuery = search => {
     this.getRecipeData(search).then(data => {
-      console.log(JSON.stringify(data))
       data && this.setState({ searchData: data.hits })
     })
   }

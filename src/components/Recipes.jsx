@@ -21,17 +21,24 @@ const CardScrollContainer = styled.div`
 `
 
 const Arrow = styled.div`
-  width: 100px;
-  height: 100%;
-  border-radius: 100%;
+  transition: 0.3s ease-in-out;
+  opacity: ${props => (props.showArrow ? 1 : 0)};
+  width: 200px;
+  min-height: 200px;
+  padding: 0 5px 0 50px;
+  border-radius: 0 10px 10px 0;
   position: sticky;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background-color: ${props => props.theme.backgroundSecondary + 'AD'};
+  background-image: linear-gradient(
+    to right,
+    ${props => props.theme.background + '00'},
+    ${props => props.theme.background + '6B'},
+    ${props => props.theme.background + 'E6'},
+    ${props => props.theme.background}
+  );
   :hover {
     cursor: pointer;
   }
@@ -61,7 +68,11 @@ const Recipes = props => {
     scrollContainer.scrollLeft = scrollDistance
   }
   return (
-    <CardScrollContainer className={'card-scroll-container'} enterDirection={direction} onMouseEnter={displayArrow} onMouseLeave={displayArrow}>
+    <CardScrollContainer
+      className={'card-scroll-container'}
+      enterDirection={direction}
+      onMouseEnter={displayArrow}
+      onMouseLeave={displayArrow}>
       {recipes &&
         recipes.map((recipe, idx) => {
           return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
@@ -70,11 +81,9 @@ const Recipes = props => {
         loaderCards.map((card, idx) => {
           return <Card key={idx} loader />
         })}
-      {showArrow && (
-        <Arrow className={'arrow'} onClick={handleScroll} right>
-          <ArrowRightCircle height={50} width={50} color={'white'} />
-        </Arrow>
-      )}
+      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow} right>
+        <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
+      </Arrow>
     </CardScrollContainer>
   )
 }
