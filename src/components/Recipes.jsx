@@ -18,8 +18,8 @@ const ContainerForStickArrows = styled.div`
 const CardScrollContainer = styled.div`
   grid-area: row;
   z-index: 5;
-  margin: 5px 0 0 -105px;
-  min-width: calc(100% - 25px);
+  margin: 5px 0 0;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 6px 0;
@@ -94,9 +94,9 @@ const Recipes = props => {
   )
 
   const displayArrow = enter => {
-    if (enter) {
+    if (enter && scrollContainer) {
       let displayLeftPosition = !(scrollContainer.scrollLeft === 0)
-      let displayRightPosition = !(scrollContainer.scrollLeft === scrollContainer.scrollWidth)
+      let displayRightPosition = !(scrollContainer.scrollLeft === (scrollContainer.scrollWidth - window.innerWidth))
       setShowArrow({ left: displayLeftPosition, right: displayRightPosition })
     } else {
       setShowArrow({ left: false, right: false })
@@ -116,7 +116,6 @@ const Recipes = props => {
 
     scrollContainer.scrollLeft = scrollDistance
   }
-  console.log('hi')
   return (
     <Grid 
     onMouseOver={() => displayArrow(true)}
