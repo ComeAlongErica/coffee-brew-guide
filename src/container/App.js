@@ -101,6 +101,7 @@ class App extends Component {
               card = (
                 <Recipes
                   key={idx}
+                  index={idx}
                   recipes={cat}
                   handleDisplayModal={this.handleDisplayModal}
                   scrollDirection={scrollDirection}
@@ -111,6 +112,7 @@ class App extends Component {
               card = (
                 <Recipes
                   key={idx}
+                  index={idx}
                   recipes={cat}
                   handleDisplayModal={this.handleDisplayModal}
                   scrollDirection={scrollDirection}
