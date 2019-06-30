@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { ArrowRightCircle } from 'react-feather'
 
 import Card from './parts/Card'
 
@@ -21,10 +22,16 @@ const CardScrollContainer = styled.div`
 
 const Arrow = styled.div`
   width: 100px;
-  height: 50%;
-  position: absolute;
+  height: 100%;
+  border-radius: 100%;
+  position: sticky;
   right: 20px;
-  background-color: grey;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: ${props => props.theme.backgroundSecondary + 'AD'};
   :hover {
     cursor: pointer;
   }
@@ -42,6 +49,7 @@ const Recipes = props => {
     },
     [scrollDirection]
   )
+  console.log(props.theme)
   const displayArrow = () => setShowArrow(!showArrow)
   return (
     <CardScrollContainer enterDirection={direction} onMouseEnter={displayArrow} onMouseLeave={displayArrow}>
@@ -53,7 +61,11 @@ const Recipes = props => {
         loaderCards.map((card, idx) => {
           return <Card key={idx} loader />
         })}
-     {showArrow && <Arrow right />}
+      {true && (
+        <Arrow className={'arrow'} right>
+          <ArrowRightCircle height={50} width={50} color={'white'} />
+        </Arrow>
+      )}
     </CardScrollContainer>
   )
 }
