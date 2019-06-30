@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const CardContainer = styled.div`
-  min-height: ${props => (props.expand || props.bigCard ? 250 : 160)}px;
+  min-height: ${props => (props.expand ? 250 : 160)}px;
   flex-grow: 1;
   min-width: 375px;
   overflow: hidden;
@@ -69,7 +69,7 @@ const Image = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   transition: 0.3s ease-in-out;
-  height: ${props => (props.expand || props.bigCard ? 250 : 150)}px;
+  height: ${props => (props.expand ? 250 : 150)}px;
   min-width: 150px;
   overflow: hidden;
   border-radius: 10px;
@@ -92,7 +92,7 @@ const TextSection = styled.div`
     font-size: 13px;
     line-height: 18px;
     display: -webkit-box;
-    -webkit-line-clamp: ${props => (props.expand ? 7 : props.bigCard ? 9 : 4)};
+    -webkit-line-clamp: ${props => (props.expand ? 7 : 4)};
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -105,9 +105,7 @@ const TextSection = styled.div`
 
 const Card = props => {
   const { recipe, loader, handleDisplayModal, expand } = props
-  const [bigCard, setBigCard] = useState(false)
 
-  const enlargeCard = () => setBigCard(!bigCard)
   return (
     <>
       {loader && (
@@ -125,12 +123,9 @@ const Card = props => {
       {!loader && (
         <CardContainer
           onClick={() => handleDisplayModal(recipe)}
-          expand={expand}
-          bigCard={bigCard}
-          onMouseEnter={enlargeCard}
-          onMouseLeave={enlargeCard}>
-          <Image image={recipe.image} expand={expand} bigCard={bigCard} />
-          <TextSection expand={expand} bigCard={bigCard}>
+          expand={expand}>
+          <Image image={recipe.image} expand={expand}  />
+          <TextSection expand={expand}>
             <h3>{recipe.label}</h3>
             <p>{recipe.ingredientLines}</p>
             <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>

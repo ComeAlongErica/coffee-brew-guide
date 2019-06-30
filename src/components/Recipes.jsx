@@ -4,13 +4,26 @@ import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
 
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'row';
+`
+const ContainerForStickArrows = styled.div`
+  grid-area: row;
+  min-width: 100vw;
+  z-index: 5;
+  pointer-events: none;
+`
 const CardScrollContainer = styled.div`
-  position: relative;
-  margin: 5px 0 0;
-  min-width: 100%;
+  grid-area: row;
+  z-index: 5;
+  margin: 5px 0 0 -105px;
+  min-width: calc(100% - 25px);
   display: flex;
-  overflow-x: auto;
+  align-items: center;
   padding: 6px 0;
+  overflow-x: auto;
   transition: 0.4s ease-in-out;
   transform: translateX(
     ${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')}
@@ -23,43 +36,44 @@ const CardScrollContainer = styled.div`
 const Arrow = styled.div`
   transition: 0.3s ease-in-out;
   opacity: ${props => (props.showArrow ? 1 : 0)};
-  min-height: 200px;
-  position: sticky;
+  height: 223px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  pointer-events: auto;
   :hover {
     cursor: pointer;
   }
-  ${props =>
-    props.right &&
-    `
-    right: 0;
-    padding: 0 15px 0 50px;
-    border-radius: 0 10px 10px 0;
-    background-image: linear-gradient(
+  ::after {
+    content: '';
+    float: clear;
+  }
+`
+const RightArrow = styled(Arrow)`
+  float: right;
+  padding: 0 10px 0 50px;
+  border-radius: 10px 0 0 10px;
+  background-image: linear-gradient(
     to right,
+    ${props => `
     ${props.theme.background + '00'},
     ${props.theme.background + '6B'},
     ${props.theme.background + 'E6'},
-    ${props.theme.background}
+    ${props.theme.background}`}
   );
-  `}
-  ${props =>
-    props.left &&
-    `
-    position: fixed
-    left: 0;
-    padding: 0 50x 0 15px;
-    border-radius: 10px 0 0 10px;
-    background-image: linear-gradient(
+`
+const LeftArrow = styled(Arrow)`
+  float: left;
+  border-radius: 10px 0 0 10px;
+  padding: 0 50px 0 10px;
+  background-image: linear-gradient(
     to left,
+    ${props => `
     ${props.theme.background + '00'},
     ${props.theme.background + '6B'},
     ${props.theme.background + 'E6'},
-    ${props.theme.background}
+    ${props.theme.background}`}
   );
-  `}
 `
 const Recipes = props => {
   const { recipes, handleDisplayModal, scrollDirection, index, expand } = props
@@ -78,14 +92,6 @@ const Recipes = props => {
     },
     [scrollDirection]
   )
-  useEffect(
-    () => {
-      if (showArrow.right) {
-        displayArrow(true)
-      }
-    },
-    [showArrow]
-  )
 
   const displayArrow = enter => {
     if (enter) {
@@ -96,34 +102,56 @@ const Recipes = props => {
       setShowArrow({ left: false, right: false })
     }
   }
-  const handleScroll = () => {
+  const handleScroll = direction => {
     let halfWindowSize = window.innerWidth / 2
     let currentPosition = scrollContainer.scrollLeft
-    let scrollDistance = currentPosition + halfWindowSize
     scrollContainer.style.scrollBehavior = 'smooth'
+    let scrollDistance
+
+    if (direction) {
+      scrollDistance = currentPosition + halfWindowSize
+    } else {
+      scrollDistance = currentPosition - halfWindowSize
+    }
+
     scrollContainer.scrollLeft = scrollDistance
   }
+  console.log('hi')
   return (
-    <CardScrollContainer
-      className={'card-scroll-container'}
-      enterDirection={direction}
-      onMouseEnter={() => displayArrow(true)}
-      onMouseLeave={() => displayArrow(false)}>
-      {recipes &&
-        recipes.map((recipe, idx) => {
-          return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
-        })}
-      {!recipes &&
-        loaderCards.map((card, idx) => {
-          return <Card key={idx} loader />
-        })}
-      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow.right} right>
-        <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
-      </Arrow>
-      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow.left} left>
-        <ArrowLeftCircle height={50} width={50} color={'#f9bd35'} />
-      </Arrow>
-    </CardScrollContainer>
+    <Grid 
+    onMouseOver={() => displayArrow(true)}
+    onMouseLeave={() => displayArrow(false)}>
+      <CardScrollContainer
+        className={'card-scroll-container'}
+        enterDirection={direction}>
+        {recipes &&
+          recipes.map((recipe, idx) => {
+            return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
+          })}
+        {!recipes &&
+          loaderCards.map((card, idx) => {
+            return <Card key={idx} loader />
+          })}
+      </CardScrollContainer>
+      <ContainerForStickArrows enterDirection={direction}>
+        <LeftArrow
+          className={'arrow'}
+          onClick={() => handleScroll(false)}
+          showArrow= {showArrow.left}
+          expand={expand}
+          left>
+          <ArrowLeftCircle height={50} width={50} color={'#f9bd35'} />
+        </LeftArrow>
+        <RightArrow
+          className={'arrow'}
+          onClick={() => handleScroll(true)}
+          showArrow= {showArrow.right}
+          expand={expand}
+          right>
+          <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
+        </RightArrow>
+      </ContainerForStickArrows>
+    </Grid>
   )
 }
 
