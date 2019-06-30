@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { ArrowRightCircle } from 'react-feather'
+import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
 
@@ -23,9 +23,8 @@ const CardScrollContainer = styled.div`
 const Arrow = styled.div`
   transition: 0.3s ease-in-out;
   opacity: ${props => (props.showArrow ? 1 : 0)};
-  width: 200px;
   min-height: 200px;
-  padding: 0 5px 0 50px;
+  padding: 0 15px 0 50px;
   border-radius: 0 10px 10px 0;
   position: sticky;
   right: 0;
@@ -46,7 +45,7 @@ const Arrow = styled.div`
 const Recipes = props => {
   const { recipes, handleDisplayModal, scrollDirection, index, expand } = props
   const [direction, setDirection] = useState(scrollDirection)
-  const [showArrow, setShowArrow] = useState(false)
+  const [showArrow, setShowArrow] = useState({ left: false, right: false })
   const loaderCards = [1, 2, 3, 4, 5]
   useEffect(
     () => {
@@ -56,7 +55,18 @@ const Recipes = props => {
     },
     [scrollDirection]
   )
-  const displayArrow = () => setShowArrow(!showArrow)
+  const displayArrow = enter => {
+    if (enter) {
+      const scrollContainers = document.getElementsByClassName('card-scroll-container')
+      let containerIdx = scrollContainers.length === 4 ? index : index - 1
+      const scrollContainer = scrollContainers[containerIdx]
+      let displayLeftPosition = !(scrollContainer.scrollLeft === 0)
+      let displayRightPosition = !(scrollContainer.scrollLeft === scrollContainer.scrollWidth)
+      setShowArrow({ left: displayLeftPosition, right: displayRightPosition })
+    } else {
+      setShowArrow({ left: false, right: false })
+    }
+  }
   const handleScroll = () => {
     const scrollContainers = document.getElementsByClassName('card-scroll-container')
     let containerIdx = scrollContainers.length === 4 ? index : index - 1
@@ -71,8 +81,8 @@ const Recipes = props => {
     <CardScrollContainer
       className={'card-scroll-container'}
       enterDirection={direction}
-      onMouseEnter={displayArrow}
-      onMouseLeave={displayArrow}>
+      onMouseEnter={() => displayArrow(true)}
+      onMouseLeave={() => displayArrow(false)}>
       {recipes &&
         recipes.map((recipe, idx) => {
           return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
@@ -81,8 +91,11 @@ const Recipes = props => {
         loaderCards.map((card, idx) => {
           return <Card key={idx} loader />
         })}
-      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow} right>
+      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow.right} right>
         <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
+      </Arrow>
+      <Arrow className={'arrow'} onClick={handleScroll} showArrow={showArrow.left} left>
+        <ArrowLeftCircle height={50} width={50} color={'#f9bd35'} />
       </Arrow>
     </CardScrollContainer>
   )
