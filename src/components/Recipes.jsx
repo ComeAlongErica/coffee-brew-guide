@@ -50,6 +50,7 @@ const Arrow = styled.div`
   }
 `
 const RightArrow = styled(Arrow)`
+  height: ${props => props.expand && '326px'};
   float: right;
   padding: 0 10px 0 50px;
   border-radius: 10px 0 0 10px;
@@ -63,6 +64,7 @@ const RightArrow = styled(Arrow)`
   );
 `
 const LeftArrow = styled(Arrow)`
+  height: ${props => props.expand && '326px'};
   float: left;
   border-radius: 10px 0 0 10px;
   padding: 0 50px 0 10px;
@@ -96,7 +98,7 @@ const Recipes = props => {
   const displayArrow = enter => {
     if (enter && scrollContainer) {
       let displayLeftPosition = !(scrollContainer.scrollLeft === 0)
-      let displayRightPosition = !(scrollContainer.scrollLeft === (scrollContainer.scrollWidth - window.innerWidth))
+      let displayRightPosition = !(scrollContainer.scrollLeft === scrollContainer.scrollWidth - window.innerWidth)
       setShowArrow({ left: displayLeftPosition, right: displayRightPosition })
     } else {
       setShowArrow({ left: false, right: false })
@@ -117,12 +119,8 @@ const Recipes = props => {
     scrollContainer.scrollLeft = scrollDistance
   }
   return (
-    <Grid 
-    onMouseOver={() => displayArrow(true)}
-    onMouseLeave={() => displayArrow(false)}>
-      <CardScrollContainer
-        className={'card-scroll-container'}
-        enterDirection={direction}>
+    <Grid onMouseOver={() => displayArrow(true)} onMouseLeave={() => displayArrow(false)}>
+      <CardScrollContainer className={'card-scroll-container'} enterDirection={direction}>
         {recipes &&
           recipes.map((recipe, idx) => {
             return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
@@ -136,7 +134,7 @@ const Recipes = props => {
         <LeftArrow
           className={'arrow'}
           onClick={() => handleScroll(false)}
-          showArrow= {showArrow.left}
+          showArrow={showArrow.left}
           expand={expand}
           left>
           <ArrowLeftCircle height={50} width={50} color={'#f9bd35'} />
@@ -144,7 +142,7 @@ const Recipes = props => {
         <RightArrow
           className={'arrow'}
           onClick={() => handleScroll(true)}
-          showArrow= {showArrow.right}
+          showArrow={showArrow.right}
           expand={expand}
           right>
           <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
