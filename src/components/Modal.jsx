@@ -185,7 +185,6 @@ const StyledLink = styled.a`
 
 const Modal = props => {
   const { modalData, handleCloseModal, displayModal } = props
-  console.log(modalData)
   return (
     <>
       <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
