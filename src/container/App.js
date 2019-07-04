@@ -68,7 +68,7 @@ class App extends Component {
 
   handleSearchQuery = search => {
     this.getRecipeData(search).then(data => {
-      data && this.setState({ searchData: data.hits })
+      data && this.setState({ searchData: {query: search, data: data.hits} })
     })
   }
 
@@ -101,7 +101,8 @@ class App extends Component {
                 <Recipes
                   key={idx}
                   index={idx}
-                  recipes={cat}
+                  query={cat.query}
+                  recipes={cat.data}
                   handleDisplayModal={this.handleDisplayModal}
                   scrollDirection={scrollDirection}
                   expand

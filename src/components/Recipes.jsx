@@ -77,8 +77,14 @@ const LeftArrow = styled(Arrow)`
     ${props.theme.background}`}
   );
 `
+const SearchResults = styled.h3`
+  grid-area: row;
+  opacity: 0.4;
+  margin-top: -10px;
+  margin-left: 16px;
+`
 const Recipes = props => {
-  const { recipes, handleDisplayModal, scrollDirection, index, expand } = props
+  const { recipes, handleDisplayModal, scrollDirection, index, query, expand } = props
   const [direction, setDirection] = useState(scrollDirection)
   const [showArrow, setShowArrow] = useState({ left: false, right: false })
   const loaderCards = [1, 2, 3, 4, 5]
@@ -120,6 +126,7 @@ const Recipes = props => {
   }
   return (
     <Grid onMouseOver={() => displayArrow(true)} onMouseLeave={() => displayArrow(false)}>
+      {expand && <SearchResults>Search results for {query}...</SearchResults>}
       <CardScrollContainer className={'card-scroll-container'} enterDirection={direction}>
         {recipes &&
           recipes.map((recipe, idx) => {
