@@ -44,8 +44,10 @@ const ModalContainer = styled.div`
   z-index: 11;
   top: 50%;
   left: 50%;
-  height: 500px;
-  width: 400px;
+  min-height: 500px;
+  max-height: 80vh;
+  overflow: scroll;
+  width: 450px;
   padding: 10px;
   margin: 10px;
   background-color: ${props => props.theme.backgroundSecondary};
@@ -54,7 +56,10 @@ const ModalContainer = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   transform: translate(-50%, -50%);
   transform-origin: top left;
-  animation: ${props => (props.displayModal ? 'popIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards' : 'fadeOutContainer 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards')};
+  animation: ${props =>
+    props.displayModal
+      ? 'popIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards'
+      : 'fadeOutContainer 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards'};
   @keyframes popIn {
     0% {
       transform: scaleY(0) scaleX(0) translate(-50%, -50%);
@@ -84,29 +89,141 @@ const ModalContainer = styled.div`
 
 const Image = styled.div`
   background: url(${props => props.image});
-  background-size: auto 150px;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 150px;
-  min-width: 150px;
   overflow: hidden;
-  border-radius: 10px;
-  margin-right: 15px;`
-const TextSection = styled.div``
+  border-radius: 10px 10px 0 0;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  ::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, ${props => props.theme.backgroundSecondary} 0%, transparent 100%);
+  }
+`
+const TextSection = styled.div`
+  position: absolute;
+  margin: 0 30px 20px;
+  color: ${props => props.theme.fontMain};
+  top: 35%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  h3 {
+    width: 100%;
+    font-size: 26px;
+    margin: 10px;
+  }
+  div {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 50%;
+  }
+`
+const Ingredients = styled.ul`
+  margin: 0;
+  padding: 0 0 0 18px;
+  li {
+    font-size: 12px;
+    margin: 2px;
+  }
+`
+const SectionHeaders = styled.h4`
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 5px;
+  ${props => props.ingredient && `margin-left:-16px;`}
+  ${props => props.inline && `display: inline-block;`}
+`
+const StyledParagraphs = styled.p`
+  font-size: 12px;
+  margin: 2px 5px;
+  ${props => props.inline && `display: inline-block;`}
+`
+const StyledLink = styled.a`
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  color: #f9bd35;
+  display: inline-block;
+  padding: 19px 0 5px;
+  position: relative;
+  opacity: .8;
+  ::after {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    content: '';
+    transform: scaleX(.5);
+    border-bottom: 3px solid #f9bd35;
+    transition: transform 250ms ease-in-out 0s;
+  }
+  :hover::after {
+    transform: scaleX(1);
+  }
+`
 
 const Modal = props => {
   const { modalData, handleCloseModal, displayModal } = props
-console.log(modalData)
+  console.log(modalData)
   return (
     <>
       <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
       <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>
         <>
-        <Image image={modalData.image} />
+          <Image image={modalData.image} />
           <TextSection>
             <h3>{modalData.label}</h3>
-            <p>{modalData.ingredientLines}</p>
-            <p className={'cals'}>Calories: {Math.ceil(modalData.calories / modalData.yield)}</p>
+            <div>
+              <Ingredients>
+                <SectionHeaders ingredient>Ingredients</SectionHeaders>
+                {modalData.ingredients.map((item, idx) => {
+                  return <li key={idx}>{item.text}</li>
+                })}
+              </Ingredients>
+            </div>
+            <div>
+              <section>
+                <SectionHeaders inline>Servings:</SectionHeaders>
+                <StyledParagraphs inline>{modalData.yield}</StyledParagraphs>
+              </section>
+              <section>
+                <SectionHeaders inline>Calories:</SectionHeaders>
+                <StyledParagraphs inline>
+                  {Math.ceil(modalData.calories / modalData.yield)} (per serving)
+                </StyledParagraphs>
+              </section>
+              {modalData.cautions && (
+                <section>
+                  <SectionHeaders inline>Allergy:</SectionHeaders>
+                  <StyledParagraphs inline>
+                    {modalData.cautions.map((allergy, idx) => {
+                      let lastItem = modalData.cautions.length - 1
+                      let seperation = lastItem === idx ? '' : ', '
+                      return (
+                        <span key={idx}>
+                          {allergy}
+                          {seperation}
+                        </span>
+                      )
+                    })}
+                  </StyledParagraphs>
+                </section>
+              )}
+              <StyledLink href={modalData.url} target="_blank">Ready to make the recipe?</StyledLink>
+            </div>
           </TextSection>
         </>
       </ModalContainer>
