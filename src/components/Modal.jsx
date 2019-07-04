@@ -44,9 +44,8 @@ const ModalContainer = styled.div`
   z-index: 11;
   top: 50%;
   left: 50%;
-  min-height: 500px;
-  max-height: 80vh;
-  overflow: scroll;
+  height: 60vh;
+  max-height: 500px;
   width: 450px;
   padding: 10px;
   margin: 10px;
@@ -111,6 +110,8 @@ const Image = styled.div`
   }
 `
 const TextSection = styled.div`
+  max-height: 65%;
+  overflow: scroll;
   position: absolute;
   margin: 0 30px 20px;
   color: ${props => props.theme.fontMain};
@@ -153,12 +154,19 @@ const StyledLink = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   font-weight: 700;
+  text-align: center;
   font-size: 12px;
   color: #f9bd35;
   display: inline-block;
-  padding: 19px 0 5px;
-  position: relative;
-  opacity: .8;
+  padding: 50px 0 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(to top, ${props => props.theme.backgroundSecondary} 0%, transparent 100%);
   ::after {
     width: 100%;
     position: absolute;
@@ -166,7 +174,7 @@ const StyledLink = styled.a`
     left: 0px;
     display: block;
     content: '';
-    transform: scaleX(.5);
+    transform: scaleX(0.5);
     border-bottom: 3px solid #f9bd35;
     transition: transform 250ms ease-in-out 0s;
   }
@@ -182,50 +190,50 @@ const Modal = props => {
     <>
       <Overlay onClick={() => handleCloseModal(true)} displayModal={displayModal} />
       <ModalContainer onClick={() => handleCloseModal(false)} displayModal={displayModal}>
-        <>
-          <Image image={modalData.image} />
-          <TextSection>
-            <h3>{modalData.label}</h3>
-            <div>
-              <Ingredients>
-                <SectionHeaders ingredient>Ingredients</SectionHeaders>
-                {modalData.ingredients.map((item, idx) => {
-                  return <li key={idx}>{item.text}</li>
-                })}
-              </Ingredients>
-            </div>
-            <div>
+        <Image image={modalData.image} />
+        <TextSection>
+          <h3>{modalData.label}</h3>
+          <div>
+            <Ingredients>
+              <SectionHeaders ingredient>Ingredients</SectionHeaders>
+              {modalData.ingredients.map((item, idx) => {
+                return <li key={idx}>{item.text}</li>
+              })}
+            </Ingredients>
+          </div>
+          <div>
+            <section>
+              <SectionHeaders inline>Servings:</SectionHeaders>
+              <StyledParagraphs inline>{modalData.yield}</StyledParagraphs>
+            </section>
+            <section>
+              <SectionHeaders inline>Calories:</SectionHeaders>
+              <StyledParagraphs inline>
+                {Math.ceil(modalData.calories / modalData.yield)} (per serving)
+              </StyledParagraphs>
+            </section>
+            {modalData.cautions && (
               <section>
-                <SectionHeaders inline>Servings:</SectionHeaders>
-                <StyledParagraphs inline>{modalData.yield}</StyledParagraphs>
-              </section>
-              <section>
-                <SectionHeaders inline>Calories:</SectionHeaders>
+                <SectionHeaders inline>Allergy:</SectionHeaders>
                 <StyledParagraphs inline>
-                  {Math.ceil(modalData.calories / modalData.yield)} (per serving)
+                  {modalData.cautions.map((allergy, idx) => {
+                    let lastItem = modalData.cautions.length - 1
+                    let seperation = lastItem === idx ? '' : ', '
+                    return (
+                      <span key={idx}>
+                        {allergy}
+                        {seperation}
+                      </span>
+                    )
+                  })}
                 </StyledParagraphs>
               </section>
-              {modalData.cautions && (
-                <section>
-                  <SectionHeaders inline>Allergy:</SectionHeaders>
-                  <StyledParagraphs inline>
-                    {modalData.cautions.map((allergy, idx) => {
-                      let lastItem = modalData.cautions.length - 1
-                      let seperation = lastItem === idx ? '' : ', '
-                      return (
-                        <span key={idx}>
-                          {allergy}
-                          {seperation}
-                        </span>
-                      )
-                    })}
-                  </StyledParagraphs>
-                </section>
-              )}
-              <StyledLink href={modalData.url} target="_blank">Ready to make the recipe?</StyledLink>
-            </div>
-          </TextSection>
-        </>
+            )}
+          </div>
+        </TextSection>
+        <StyledLink href={modalData.url} target='_blank'>
+          Ready to make the recipe?
+        </StyledLink>
       </ModalContainer>
     </>
   )

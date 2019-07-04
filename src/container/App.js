@@ -87,7 +87,7 @@ class App extends Component {
   }
 
   render () {
-    let displayTheme = this.state.theme ? lightTheme : darkTheme
+    let displayTheme = this.state.theme ? darkTheme : lightTheme
     let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
     return (
       <ThemeProvider theme={displayTheme}>
