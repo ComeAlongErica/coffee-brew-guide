@@ -1,3 +1,5 @@
+## Note: this is currently a work-in-progress. Some functionality and error handling does not exist yet.
+
 ## Recipe Finder
 This app will be a recipe finder app using API the Edamam. My goals for this project will be to create a minimal, searchable app with options to save and come back to recipes.
 
