@@ -28,20 +28,21 @@ const SearchInput = styled.input`
 
 const SearchBar = props => {
   const { handleSearchQuery } = props
-  
-  const handleKeyPress = (event) => {
-    if(event.key === 'Enter'){
+
+  const handleKeyPress = event => {
+    if (event.key === 'Enter') {
       let value = event.target.value
       handleSearchQuery(value)
       setTimeout(() => {
-        document.getElementById('search-input').value = ''}, 5000)
+        document.getElementById('search-input').value = ''
+      }, 5000)
     }
   }
 
   return (
     <SearchContainer>
       <SearchIcon position={'absolute'} top={18} left={20} width={22} height={22} stroke={'#B6BABD'} />
-      <SearchInput id={'search-input'}onKeyPress={e => handleKeyPress(e)} placeholder={'Search'} />
+      <SearchInput id={'search-input'} onKeyPress={e => handleKeyPress(e)} placeholder={'Search'} />
     </SearchContainer>
   )
 }
