@@ -7,7 +7,7 @@ const Overlay = styled.div`
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: ${props => props.theme.fontMain + 'cf'};
+  background-color: #101B29CF;
   z-index: 10;
   animation: ${props =>
     props.displayModal
