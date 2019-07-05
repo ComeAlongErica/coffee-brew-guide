@@ -3,6 +3,8 @@
 ## Recipe Finder
 This app will be a recipe finder app using API the Edamam. My goals for this project will be to create a minimal, searchable app with options to save and come back to recipes.
 
+## [View Project](https://comealongerica.github.io/recipe-finder-guide/)
+
 **Focus Points**
 - Create a global theme to provide and light and dark theme
 - Create higher-order components for buttons, modal, and cards
