@@ -25,3 +25,12 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Dark mode with search results and scroll arrows when necessary 
+![Home](screenshots/Search Results.png)
+
+## Light mode with loader card when data is not yet available
+![Home Light](readme-img/front.gif)
+
+## Modal view for recipes
+![Modal](readme-img/todo.gif)
