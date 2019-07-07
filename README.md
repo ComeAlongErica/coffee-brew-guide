@@ -33,6 +33,6 @@ You will also see any lint errors in the console.
 ![Home Light](screenshots/light-with-loader.png)
 
 ## Modal view for recipes
-![Modal](screenshots/modal.png)
+![Modal](screenshots/modal-view.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
