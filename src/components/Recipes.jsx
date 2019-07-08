@@ -24,6 +24,7 @@ const CardScrollContainer = styled.div`
   align-items: center;
   padding: 6px 0;
   overflow-x: auto;
+  scroll-behavior: smooth;
   transition: 0.4s ease-in-out;
   transform: translateX(
     ${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')}
@@ -113,7 +114,6 @@ const Recipes = props => {
   const handleScroll = direction => {
     let halfWindowSize = window.innerWidth / 2
     let currentPosition = scrollContainer.scrollLeft
-    scrollContainer.style.scrollBehavior = 'smooth'
     let scrollDistance
 
     if (direction) {
