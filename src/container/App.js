@@ -6,6 +6,7 @@ import { bakedTofu, seitan } from '../assets/utils'
 import Header from '../components/header/Header'
 import Recipes from '../components/Recipes'
 import Modal from '../components/Modal'
+import RecipeModal from '../components/parts/RecipeModal'
 
 const AppContainer = styled.div`
   min-width: 100vw;
@@ -28,7 +29,8 @@ class App extends Component {
       firstLoad: true,
       modalFirstRender: false,
       displayModal: false,
-      modalData: null
+      modalData: null,
+      showRecipeModal: false
     }
   }
 
@@ -77,18 +79,21 @@ class App extends Component {
     this.setState({ theme: !this.state.theme })
   }
 
-  handleDisplayModal = data => {
-    this.setState({ modalFirstRender: true, displayModal: true, modalData: data })
+  handleDisplayModal = (data, modalShow) => {
+    this.setState({ modalFirstRender: true, displayModal: true, modalData: data, showRecipeModal: modalShow === 'recipe', showLogIn: modalShow === 'login' })
   }
 
   handleCloseModal = closeModal => {
     if (closeModal) {
-      this.setState({ displayModal: false })
+      this.setState({ displayModal: false, showRecipeModal: false })
     }
   }
 
   handleUser = () => {
-      this.setState({ loggedIn: !this.state.loggedIn })
+    if(!this.state.loggedIn) {
+      this.handleDisplayModal(null, 'login')
+    }
+      // this.setState({ loggedIn: !this.state.loggedIn })
   }
 
   render () {
@@ -128,10 +133,10 @@ class App extends Component {
           })}
           {this.state.modalFirstRender && (
             <Modal
-              modalData={this.state.modalData}
               displayModal={this.state.displayModal}
-              handleCloseModal={this.handleCloseModal}
-            />
+              handleCloseModal={this.handleCloseModal}>
+                {this.state.showRecipeModal && <RecipeModal modalData={this.state.modalData}/>}
+              </Modal>
           )}
         </AppContainer>
       </ThemeProvider>
