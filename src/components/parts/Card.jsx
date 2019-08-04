@@ -122,7 +122,7 @@ const Card = props => {
       )}
       {!loader && (
         <CardContainer
-          onClick={() => handleDisplayModal(recipe)}
+          onClick={() => handleDisplayModal(recipe, 'recipe')}
           expand={expand}>
           <Image image={recipe.image} expand={expand}  />
           <TextSection expand={expand}>

@@ -7,6 +7,7 @@ import Header from '../components/header/Header'
 import Recipes from '../components/Recipes'
 import Modal from '../components/Modal'
 import RecipeModal from '../components/parts/RecipeModal'
+import LogIn from '../components/parts/LogInModal'
 
 const AppContainer = styled.div`
   min-width: 100vw;
@@ -71,7 +72,7 @@ class App extends Component {
 
   handleSearchQuery = search => {
     this.getRecipeData(search).then(data => {
-      data && this.setState({ searchData: {query: search, data: data.hits} })
+      data && this.setState({ searchData: { query: search, data: data.hits } })
     })
   }
 
@@ -80,7 +81,13 @@ class App extends Component {
   }
 
   handleDisplayModal = (data, modalShow) => {
-    this.setState({ modalFirstRender: true, displayModal: true, modalData: data, showRecipeModal: modalShow === 'recipe', showLogIn: modalShow === 'login' })
+    this.setState({
+      modalFirstRender: true,
+      displayModal: true,
+      modalData: data,
+      showRecipeModal: modalShow === 'recipe',
+      showLogIn: modalShow === 'login'
+    })
   }
 
   handleCloseModal = closeModal => {
@@ -90,10 +97,10 @@ class App extends Component {
   }
 
   handleUser = () => {
-    if(!this.state.loggedIn) {
+    if (!this.state.loggedIn) {
       this.handleDisplayModal(null, 'login')
     }
-      // this.setState({ loggedIn: !this.state.loggedIn })
+    // this.setState({ loggedIn: !this.state.loggedIn })
   }
 
   render () {
@@ -102,7 +109,12 @@ class App extends Component {
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
-          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} loggedIn={this.state.loggedIn} handleUser={this.handleUser} />
+          <Header
+            toggleTheme={this.handleToggleTheme}
+            handleSearchQuery={this.handleSearchQuery}
+            loggedIn={this.state.loggedIn}
+            handleUser={this.handleUser}
+          />
           {displayCats.map((cat, idx) => {
             let scrollDirection = idx % 2 === 0
             let card = null
@@ -132,11 +144,10 @@ class App extends Component {
             return card
           })}
           {this.state.modalFirstRender && (
-            <Modal
-              displayModal={this.state.displayModal}
-              handleCloseModal={this.handleCloseModal}>
-                {this.state.showRecipeModal && <RecipeModal modalData={this.state.modalData}/>}
-              </Modal>
+            <Modal displayModal={this.state.displayModal} handleCloseModal={this.handleCloseModal}>
+              {this.state.showRecipeModal && <RecipeModal modalData={this.state.modalData} />}
+              {this.state.showLogIn && <LogIn />}
+            </Modal>
           )}
         </AppContainer>
       </ThemeProvider>
