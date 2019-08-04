@@ -21,6 +21,7 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      loggedIn: false,
       displayData: undefined,
       searchData: undefined,
       theme: true,
@@ -86,13 +87,17 @@ class App extends Component {
     }
   }
 
+  handleUser = () => {
+      this.setState({ loggedIn: !this.state.loggedIn })
+  }
+
   render () {
     let displayTheme = this.state.theme ? darkTheme : lightTheme
     let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
-          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} />
+          <Header toggleTheme={this.handleToggleTheme} handleSearchQuery={this.handleSearchQuery} loggedIn={this.state.loggedIn} handleUser={this.handleUser} />
           {displayCats.map((cat, idx) => {
             let scrollDirection = idx % 2 === 0
             let card = null
