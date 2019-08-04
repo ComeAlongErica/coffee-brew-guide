@@ -40,6 +40,7 @@ const Input = styled.input`
     border: 2px solid ${props => props.theme.fontMain};
     -webkit-text-fill-color: ${props => props.theme.fontMain};
     -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    box-shadow: 0 0 0px 1000px transparent inset;
     transition: background-color 5000s ease-in-out 0s;
   }
   :focus {
