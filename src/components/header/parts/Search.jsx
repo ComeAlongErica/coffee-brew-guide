@@ -11,7 +11,7 @@ const SearchContainer = styled.div`
 `
 const SearchInput = styled.input`
   outline: none;
-  width: 100%;
+  width: calc(100% - 80px);
   height: 55px;
   background-color: ${props => props.theme.backgroundSecondary};
   border: none;

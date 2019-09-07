@@ -8,6 +8,7 @@ import ToggleSwitch from './parts/ToggleSwitch'
 
 const HeaderContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `
 const ButtonsContainer = styled.div`
   display: flex;
