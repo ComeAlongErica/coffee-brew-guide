@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
+import Button from '../../assets/Button'
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  h3 {
+    color: ${props => props.theme.fontMain};
+    font-size: 26px;
+    margin: 10px;
+  }
+`
+
 const Container = styled.div`
   width: 250px;
   height: 45px;
@@ -52,22 +66,51 @@ const Input = styled.input`
     border: 2px solid red;
   `}
 `
+const Bar = styled.div`
+  margin-top: 50px;
+  background-color: ${props => props.theme.fontSecondary};
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  p {
+    color: ${props => props.theme.backgroundSecondary};
+    font-size: 10px;
+    margin: 20px 20px 0;
+    max-height: 50px;
+  }
+  .red {
+    color: red;
+    margin: 5px 20px;
+  }
+`
+
 const LogInModal = props => {
+  const { handleUserLogIn } = props
   const [emailFocused, setEmailFocused] = useState(false)
   const [passFocused, setPassFocused] = useState(false)
   const [error, setError] = useState({ email: false, pass: false })
+  const [errorMessage, setDisplayErrorMessage] = useState(false)
 
   const validateEmail = email => {
     let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     let emailValid = reg.test(String(email).toLowerCase())
     setError({ email: !emailValid, pass: error.pass })
-  }  
+  }
   const validatePassword = pass => {
     pass.length ? setError({ email: error.email, pass: false }) : setError({ email: error.email, pass: true })
   }
-
+  const handleSubmit = () => {
+    if (!error.pass && !error.email) {
+      handleUserLogIn()
+    } else {
+      setDisplayErrorMessage(true)
+    }
+  }
   return (
-    <form>
+    <Form>
+      <h3>User Login</h3>
       <Container>
         <Input
           type={'email'}
@@ -98,7 +141,17 @@ const LogInModal = props => {
           Password
         </Label>
       </Container>
-    </form>
+      <Bar>
+        <p>Note: Do not use real e-mail or password here.</p>
+        {errorMessage && (
+          <>
+            <p className={'red'}>E-mail must follow standard e-mail formatting.</p>
+            <p className={'red'}>Password must be filled out.</p>
+          </>
+        )}
+        <Button text={'Submit'} handleClick={handleSubmit} />
+      </Bar>
+    </Form>
   )
 }
 

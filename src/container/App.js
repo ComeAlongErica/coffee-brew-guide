@@ -96,7 +96,7 @@ class App extends Component {
     }
   }
 
-  handleUser = () => {
+  handleUserLogIn = () => {
     if (!this.state.loggedIn) {
       this.handleDisplayModal(null, 'login')
     }
@@ -113,7 +113,7 @@ class App extends Component {
             toggleTheme={this.handleToggleTheme}
             handleSearchQuery={this.handleSearchQuery}
             loggedIn={this.state.loggedIn}
-            handleUser={this.handleUser}
+            handleUser={this.handleUserLogIn}
           />
           {displayCats.map((cat, idx) => {
             let scrollDirection = idx % 2 === 0
@@ -146,7 +146,7 @@ class App extends Component {
           {this.state.modalFirstRender && (
             <Modal displayModal={this.state.displayModal} handleCloseModal={this.handleCloseModal}>
               {this.state.showRecipeModal && <RecipeModal modalData={this.state.modalData} />}
-              {this.state.showLogIn && <LogIn />}
+              {this.state.showLogIn && <LogIn handleUserLogIn={this.handleUserLogIn}/>}
             </Modal>
           )}
         </AppContainer>

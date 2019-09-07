@@ -21,12 +21,13 @@ transition: .3s ease-in-out;
 :hover {
     box-shadow: ${props => props.theme.dropShadowHover};
 }
+${props => props.styling && props.styling}
 `
 
 const SearchSVG = props => {
-    const { text, handleClick } = props
+    const { text, handleClick, styling } = props
     return (
-    <GlobalButton onClick={handleClick}>
+    <GlobalButton onClick={handleClick} styling={styling}>
         {text}
     </GlobalButton>)
 }
