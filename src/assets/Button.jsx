@@ -24,7 +24,7 @@ transition: .3s ease-in-out;
 ${props => props.styling && props.styling}
 `
 
-const SearchSVG = props => {
+const Button = props => {
     const { text, handleClick, styling } = props
     return (
     <GlobalButton onClick={handleClick} styling={styling}>
@@ -32,4 +32,4 @@ const SearchSVG = props => {
     </GlobalButton>)
 }
 
-export default SearchSVG
+export default Button

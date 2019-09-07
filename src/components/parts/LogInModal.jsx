@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 
 import Button from '../../assets/Button'
@@ -77,7 +77,7 @@ const Bar = styled.div`
   p {
     color: ${props => props.theme.backgroundSecondary};
     font-size: 10px;
-    margin: 20px 20px 0;
+    margin: 20px 20px 5px;
     max-height: 50px;
   }
   .red {
@@ -87,23 +87,28 @@ const Bar = styled.div`
 `
 
 const LogInModal = props => {
-  const { handleUserLogIn } = props
+  const { handleUserLogIn, handleCloseModal } = props
   const [emailFocused, setEmailFocused] = useState(false)
   const [passFocused, setPassFocused] = useState(false)
   const [error, setError] = useState({ email: false, pass: false })
   const [errorMessage, setDisplayErrorMessage] = useState(false)
-
+  const email = useRef()
+  const pass = useRef()
   const validateEmail = email => {
     let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     let emailValid = reg.test(String(email).toLowerCase())
     setError({ email: !emailValid, pass: error.pass })
+    return emailValid
   }
   const validatePassword = pass => {
     pass.length ? setError({ email: error.email, pass: false }) : setError({ email: error.email, pass: true })
+    return pass.length
   }
   const handleSubmit = () => {
-    if (!error.pass && !error.email) {
+    const doErrorsExist = validateEmail(email.current.value) && validatePassword(pass.current.value)
+    if (doErrorsExist) {
       handleUserLogIn()
+      handleCloseModal(true)
     } else {
       setDisplayErrorMessage(true)
     }
@@ -113,6 +118,7 @@ const LogInModal = props => {
       <h3>User Login</h3>
       <Container>
         <Input
+          ref={email}
           type={'email'}
           name={'email'}
           autocomplete={'off'}
@@ -128,6 +134,7 @@ const LogInModal = props => {
       </Container>
       <Container>
         <Input
+          ref={pass}
           type={'password'}
           name={'password'}
           autocomplete={'off'}
