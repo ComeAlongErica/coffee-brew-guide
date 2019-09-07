@@ -110,6 +110,7 @@ const LogInModal = props => {
       handleUserLogIn()
       email.current.value = ''
       pass.current.value = ''
+      setDisplayErrorMessage(false)
       handleCloseModal(true)
     } else {
       setDisplayErrorMessage(true)
