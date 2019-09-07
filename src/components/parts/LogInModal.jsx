@@ -108,6 +108,8 @@ const LogInModal = props => {
     const doErrorsExist = validateEmail(email.current.value) && validatePassword(pass.current.value)
     if (doErrorsExist) {
       handleUserLogIn()
+      email.current.value = ''
+      pass.current.value = ''
       handleCloseModal(true)
     } else {
       setDisplayErrorMessage(true)
