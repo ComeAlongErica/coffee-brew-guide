@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/recipe-finder-guide/static/js/runtime~main.c84daa7e.js"
   },
   {
-    "revision": "62dc5b602f2369d93089",
-    "url": "/recipe-finder-guide/static/js/main.7f163845.chunk.js"
+    "revision": "d25514ce3e6c667bfa07",
+    "url": "/recipe-finder-guide/static/js/main.8f972543.chunk.js"
   },
   {
     "revision": "3c70619564e6776e3b27",
     "url": "/recipe-finder-guide/static/js/2.e320b55a.chunk.js"
   },
   {
-    "revision": "62dc5b602f2369d93089",
+    "revision": "d25514ce3e6c667bfa07",
     "url": "/recipe-finder-guide/static/css/main.95ddcfc7.chunk.css"
   },
   {
-    "revision": "74228259aefe74e7ac142648b580b221",
+    "revision": "66d76dff5a8ac864bd38d4cc6bb617e3",
     "url": "/recipe-finder-guide/index.html"
   }
 ];
