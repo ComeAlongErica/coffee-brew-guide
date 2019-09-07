@@ -6,7 +6,6 @@ const Image = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  overflow: hidden;
   border-radius: 10px 10px 0 0;
   height: 50%;
   width: 100%;
@@ -18,7 +17,7 @@ const Image = styled.div`
     position: absolute;
     display: block;
     left: 0;
-    bottom: 0;
+    bottom: -2px;
     width: 100%;
     height: 50%;
     background: linear-gradient(to top, ${props => props.theme.backgroundSecondary} 0%, transparent 100%);
