@@ -68,14 +68,14 @@ const Input = styled.input`
 `
 const Bar = styled.div`
   margin-top: 50px;
-  background-color: ${props => props.theme.fontSecondary};
+  background-color: ${props => props.theme.fontSecondary + '26'};
   width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   p {
-    color: ${props => props.theme.backgroundSecondary};
+    color: ${props => props.theme.fontMain};
     font-size: 10px;
     margin: 20px 20px 5px;
     max-height: 50px;
