@@ -11,7 +11,9 @@ This app will be a recipe finder app using API the Edamam. My goals for this pro
 - Experiment with custom animations (slides, scoll, fade)
 - Focus on user interaction
 - Use lifecycle methods (I started react with hooks, so I never had the chance to use them.)
-- Create loader card when data is not yet available 
+- Create loader card when data is not yet available
+- Add log in with basic validation
+- Allow user to save recipes
 
 ## Available Scripts
 
