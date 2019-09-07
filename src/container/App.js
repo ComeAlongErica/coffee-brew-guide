@@ -26,7 +26,7 @@ class App extends Component {
       loggedIn: false,
       displayData: undefined,
       searchData: undefined,
-      theme: true,
+      theme: false,
       firstLoad: true,
       modalFirstRender: false,
       displayModal: false,
