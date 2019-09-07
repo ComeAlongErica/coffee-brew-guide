@@ -61,6 +61,9 @@ const LogInModal = props => {
     let reg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     let emailValid = reg.test(String(email).toLowerCase())
     setError({ email: !emailValid, pass: error.pass })
+  }  
+  const validatePassword = pass => {
+    pass.length ? setError({ email: error.email, pass: false }) : setError({ email: error.email, pass: true })
   }
 
   return (
@@ -78,6 +81,21 @@ const LogInModal = props => {
         />
         <Label htmlFor={'email'} emailFocused={emailFocused}>
           Email
+        </Label>
+      </Container>
+      <Container>
+        <Input
+          type={'password'}
+          name={'password'}
+          autocomplete={'off'}
+          placeholder={' '}
+          onFocus={() => setPassFocused(true)}
+          onBlur={e => validatePassword(e.target.value)}
+          error={error.pass}
+          required
+        />
+        <Label htmlFor={'password'} emailFocused={passFocused}>
+          Password
         </Label>
       </Container>
     </form>
