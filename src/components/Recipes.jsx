@@ -3,87 +3,8 @@ import styled from 'styled-components'
 import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
+import { Grid, ContainerForStickyArrows, CardScrollContainer, RightArrow, LeftArrow, SearchResults} from '../assets/styles.js'
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 1fr;
-  grid-template-areas: 'row';
-`
-const ContainerForStickArrows = styled.div`
-  grid-area: row;
-  min-width: 100vw;
-  z-index: 5;
-  pointer-events: none;
-`
-const CardScrollContainer = styled.div`
-  grid-area: row;
-  z-index: 5;
-  margin: 5px 0 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 6px 0;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  transition: 0.4s ease-in-out;
-  transform: translateX(
-    ${props => (props.enterDirection ? (props.enterDirection === 'center' ? '' : '100vw') : '-100vw')}
-  );
-  ::-webkit-scrollbar {
-    display: none;
-  }
-`
-
-const Arrow = styled.div`
-  transition: 0.3s ease-in-out;
-  opacity: ${props => (props.showArrow ? 1 : 0)};
-  height: 223px;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  pointer-events: auto;
-  :hover {
-    cursor: pointer;
-  }
-  ::after {
-    content: '';
-    float: clear;
-  }
-`
-const RightArrow = styled(Arrow)`
-  height: ${props => props.expand && '326px'};
-  float: right;
-  padding: 0 10px 0 50px;
-  border-radius: 10px 0 0 10px;
-  background-image: linear-gradient(
-    to right,
-    ${props => `
-    ${props.theme.background + '00'},
-    ${props.theme.background + '6B'},
-    ${props.theme.background + 'E6'},
-    ${props.theme.background}`}
-  );
-`
-const LeftArrow = styled(Arrow)`
-  height: ${props => props.expand && '326px'};
-  float: left;
-  border-radius: 10px 0 0 10px;
-  padding: 0 50px 0 10px;
-  background-image: linear-gradient(
-    to left,
-    ${props => `
-    ${props.theme.background + '00'},
-    ${props.theme.background + '6B'},
-    ${props.theme.background + 'E6'},
-    ${props.theme.background}`}
-  );
-`
-const SearchResults = styled.h3`
-  grid-area: row;
-  opacity: 0.4;
-  margin-top: -10px;
-  margin-left: 16px;
-`
 const Recipes = props => {
   const { recipes, handleDisplayModal, scrollDirection, index, query, expand } = props
   const [direction, setDirection] = useState(scrollDirection)
@@ -137,7 +58,7 @@ const Recipes = props => {
             return <Card key={idx} loader />
           })}
       </CardScrollContainer>
-      <ContainerForStickArrows enterDirection={direction}>
+      <ContainerForStickyArrows enterDirection={direction}>
         <LeftArrow
           className={'arrow'}
           onClick={() => handleScroll(false)}
@@ -154,7 +75,7 @@ const Recipes = props => {
           right>
           <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
         </RightArrow>
-      </ContainerForStickArrows>
+      </ContainerForStickyArrows>
     </Grid>
   )
 }
