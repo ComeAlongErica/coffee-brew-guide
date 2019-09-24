@@ -167,3 +167,100 @@ export const ModalContainer = styled.div`
     }
   }
 `
+
+// recipe modal
+export const Image = styled.div`
+  background: url(${props => props.image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px 10px 0 0;
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  ::after {
+    content: '';
+    position: absolute;
+    display: block;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, ${props => props.theme.backgroundSecondary} 0%, transparent 100%);
+  }
+`
+export const TextSection = styled.div`
+  max-height: 65%;
+  overflow: scroll;
+  position: absolute;
+  margin: 0 30px 20px;
+  color: ${props => props.theme.fontMain};
+  top: 35%;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  h3 {
+    width: 100%;
+    font-size: 26px;
+    margin: 10px;
+  }
+  div {
+    box-sizing: border-box;
+    padding: 10px;
+    width: 50%;
+  }
+`
+export const Ingredients = styled.ul`
+  margin: 0;
+  padding: 0 0 0 18px;
+  li {
+    font-size: 12px;
+    margin: 2px;
+  }
+`
+export const SectionHeaders = styled.h4`
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 5px;
+  ${props => props.ingredient && `margin-left:-16px;`}
+  ${props => props.inline && `display: inline-block;`}
+`
+export const StyledParagraphs = styled.p`
+  font-size: 12px;
+  margin: 2px 5px;
+  ${props => props.inline && `display: inline-block;`}
+`
+export const StyledLink = styled.a`
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  font-size: 12px;
+  color: #f9bd35;
+  display: inline-block;
+  padding: 50px 0 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: linear-gradient(to top, ${props => props.theme.backgroundSecondary} 0%, transparent 100%);
+  ::after {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: block;
+    content: '';
+    transform: scaleX(0.5);
+    border-bottom: 3px solid #f9bd35;
+    transition: transform 250ms ease-in-out 0s;
+  }
+  :hover::after {
+    transform: scaleX(1);
+  }
+`

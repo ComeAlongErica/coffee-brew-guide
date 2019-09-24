@@ -31,6 +31,7 @@ const Recipes = props => {
       setShowArrow({ left: false, right: false })
     }
   }
+  
   const handleScroll = direction => {
     let halfWindowSize = window.innerWidth / 2
     let currentPosition = scrollContainer.scrollLeft
