@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 
 import Button from '../../assets/Button'
-import {Form, LabelInputContainer, Input, Label, Bar} from '../../assets/styles'
+import { Form, LabelInputContainer, Input, Label, Bar } from '../../assets/styles'
 
 
 const LogInModal = props => {
