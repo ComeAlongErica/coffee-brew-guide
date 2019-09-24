@@ -5,14 +5,13 @@ import Card from './parts/Card'
 import { Grid, ContainerForStickyArrows, CardScrollContainer, RightArrow, LeftArrow, SearchResults} from '../assets/styles.js'
 
 const Recipes = props => {
-  const { recipes, handleDisplayModal, scrollDirection, index, query, expand } = props
+  const { recipes, handleDisplayModal, scrollDirection, index, query, expand, handleFavorite } = props
   const [direction, setDirection] = useState(scrollDirection)
   const [showArrow, setShowArrow] = useState({ left: false, right: false })
   const loaderCards = [1, 2, 3, 4, 5]
   const scrollContainers = document.getElementsByClassName('card-scroll-container')
   let containerIdx = scrollContainers && scrollContainers.length === 4 ? index : index - 1
   const scrollContainer = scrollContainers && scrollContainers[containerIdx]
-
   useEffect(
     () => {
       setTimeout(() => {
@@ -51,7 +50,7 @@ const Recipes = props => {
       <CardScrollContainer className={'card-scroll-container'} enterDirection={direction}>
         {recipes &&
           recipes.map((recipe, idx) => {
-            return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} expand={expand} />
+            return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} handleFavorite={handleFavorite} expand={expand} />
           })}
         {!recipes &&
           loaderCards.map((card, idx) => {

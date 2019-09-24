@@ -31,7 +31,8 @@ class App extends Component {
       modalFirstRender: false,
       displayModal: false,
       modalData: null,
-      showRecipeModal: false
+      showRecipeModal: false,
+      favorites: []
     }
   }
 
@@ -108,7 +109,14 @@ class App extends Component {
     this.setState({ loggedIn: !this.state.loggedIn })
   }
 
+  handleFavorite = recipe => {
+    console.log(recipe)
+
+    // this.setState({ favorites: [...this.state.favorites, recipe] })
+  }
+
   render () {
+    console.log(this.state.favorites)
     let displayTheme = this.state.theme ? darkTheme : lightTheme
     let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
     return (
@@ -131,6 +139,7 @@ class App extends Component {
                   query={cat.query}
                   recipes={cat.data}
                   handleDisplayModal={this.handleDisplayModal}
+                  handleFavorite={this.handleFavorite}
                   scrollDirection={scrollDirection}
                   expand
                 />
@@ -142,6 +151,7 @@ class App extends Component {
                   index={idx}
                   recipes={cat}
                   handleDisplayModal={this.handleDisplayModal}
+                  handleFavorite={this.handleFavorite}
                   scrollDirection={scrollDirection}
                 />
               )

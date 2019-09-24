@@ -17,9 +17,10 @@ const HeartIcon = styled.svg`
 `
 
 const HeartSVG = props => {
-  const { position, width, height, bottom, right, stroke } = props
+  const { position, width, height, bottom, right, stroke, handleClick } = props
   return (
     <HeartIcon
+    onClick={handleClick}
       position={position}
       bottom={bottom}
       right={right}

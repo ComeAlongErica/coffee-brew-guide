@@ -4,8 +4,8 @@ import { CardContainer, CardText, ImageCard } from '../../assets/styles'
 import HeartSVG from '../../assets/HeartSVG'
 
 const Card = props => {
-  const { recipe, loader, handleDisplayModal, expand } = props
-
+  const { recipe, loader, handleDisplayModal, handleFavorite, expand } = props
+  const isRecipeFavorited = () => {}
   return (
     <>
       {loader && (
@@ -21,17 +21,23 @@ const Card = props => {
         </CardContainer>
       )}
       {!loader && (
-        <CardContainer
-          onClick={() => handleDisplayModal(recipe, 'recipe')}
-          expand={expand}>
-          <ImageCard image={recipe.image} expand={expand}  />
-          <CardText expand={expand}>
-            <h3>{recipe.label}</h3>
-            <p>{recipe.ingredientLines}</p>
-            <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>
-          </CardText>
-          <HeartSVG position={'absolute'} bottom={10} right={10} />
-        </CardContainer>
+        <div style={{ position: 'relative' }}>
+          <CardContainer onClick={() => handleDisplayModal(recipe, 'recipe')} expand={expand}>
+            <ImageCard image={recipe.image} expand={expand} />
+            <CardText expand={expand}>
+              <h3>{recipe.label}</h3>
+              <p>{recipe.ingredientLines}</p>
+              <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>
+            </CardText>
+          </CardContainer>
+          <HeartSVG
+            position={'absolute'}
+            bottom={20}
+            right={20}
+            handleClick={() => handleFavorite(recipe)}
+            selected={isRecipeFavorited}
+          />
+        </div>
       )}
     </>
   )
