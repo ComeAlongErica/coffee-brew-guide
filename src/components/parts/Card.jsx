@@ -4,8 +4,7 @@ import { CardContainer, CardText, ImageCard } from '../../assets/styles'
 import HeartSVG from '../../assets/HeartSVG'
 
 const Card = props => {
-  const { recipe, loader, handleDisplayModal, handleFavorite, expand } = props
-  const isRecipeFavorited = () => {}
+  const { recipe, loader, handleDisplayModal, handleFavorite, favorited, expand } = props
   return (
     <>
       {loader && (
@@ -35,7 +34,7 @@ const Card = props => {
             bottom={20}
             right={20}
             handleClick={() => handleFavorite(recipe)}
-            selected={isRecipeFavorited}
+            favorited={favorited}
           />
         </div>
       )}

@@ -8,8 +8,8 @@ const HeartIcon = styled.svg`
   width: ${props => props.width || '24'}px;
   height: ${props => props.height || '24'}px;
   stroke: ${props => props.stroke || props.theme.fontSecondary};
-  fill: ${props => props.stroke || props.theme.backgroundSecondary};
-  transition: .3s ease-in-out;
+  fill: ${props => props.favorited ? (props.stroke || props.theme.fontSecondary) : (props.stroke || props.theme.backgroundSecondary)};
+  transition: 0.3s ease-in-out;
   :hover {
     cursor: pointer;
     fill: ${props => props.stroke || props.theme.fontSecondary};
@@ -17,10 +17,11 @@ const HeartIcon = styled.svg`
 `
 
 const HeartSVG = props => {
-  const { position, width, height, bottom, right, stroke, handleClick } = props
+  const { position, width, height, bottom, right, stroke, handleClick, favorited } = props
   return (
     <HeartIcon
-    onClick={handleClick}
+      favorited={favorited}
+      onClick={handleClick}
       position={position}
       bottom={bottom}
       right={right}

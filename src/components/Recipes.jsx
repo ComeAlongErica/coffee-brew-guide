@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
-import { Grid, ContainerForStickyArrows, CardScrollContainer, RightArrow, LeftArrow, SearchResults} from '../assets/styles.js'
+import {
+  Grid,
+  ContainerForStickyArrows,
+  CardScrollContainer,
+  RightArrow,
+  LeftArrow,
+  SearchResults
+} from '../assets/styles.js'
 
 const Recipes = props => {
-  const { recipes, handleDisplayModal, scrollDirection, index, query, expand, handleFavorite } = props
+  const { recipes, handleDisplayModal, scrollDirection, index, query, expand, handleFavorite, favorites } = props
   const [direction, setDirection] = useState(scrollDirection)
   const [showArrow, setShowArrow] = useState({ left: false, right: false })
   const loaderCards = [1, 2, 3, 4, 5]
@@ -30,7 +37,7 @@ const Recipes = props => {
       setShowArrow({ left: false, right: false })
     }
   }
-  
+
   const handleScroll = direction => {
     let halfWindowSize = window.innerWidth / 2
     let currentPosition = scrollContainer.scrollLeft
@@ -50,7 +57,17 @@ const Recipes = props => {
       <CardScrollContainer className={'card-scroll-container'} enterDirection={direction}>
         {recipes &&
           recipes.map((recipe, idx) => {
-            return <Card recipe={recipe.recipe} key={idx} handleDisplayModal={handleDisplayModal} handleFavorite={handleFavorite} expand={expand} />
+            let favorited = favorites.find(fav => fav.label === recipe.recipe.label)
+            return (
+              <Card
+                recipe={recipe.recipe}
+                favorited={favorited}
+                key={idx}
+                handleDisplayModal={handleDisplayModal}
+                handleFavorite={handleFavorite}
+                expand={expand}
+              />
+            )
           })}
         {!recipes &&
           loaderCards.map((card, idx) => {

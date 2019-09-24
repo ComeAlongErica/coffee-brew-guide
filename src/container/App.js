@@ -110,13 +110,10 @@ class App extends Component {
   }
 
   handleFavorite = recipe => {
-    console.log(recipe)
-
-    // this.setState({ favorites: [...this.state.favorites, recipe] })
+    this.setState({ favorites: [...this.state.favorites, recipe] })
   }
 
   render () {
-    console.log(this.state.favorites)
     let displayTheme = this.state.theme ? darkTheme : lightTheme
     let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
     return (
@@ -140,6 +137,7 @@ class App extends Component {
                   recipes={cat.data}
                   handleDisplayModal={this.handleDisplayModal}
                   handleFavorite={this.handleFavorite}
+                  favorites={this.state.favorites}
                   scrollDirection={scrollDirection}
                   expand
                 />
@@ -152,6 +150,7 @@ class App extends Component {
                   recipes={cat}
                   handleDisplayModal={this.handleDisplayModal}
                   handleFavorite={this.handleFavorite}
+                  favorites={this.state.favorites}
                   scrollDirection={scrollDirection}
                 />
               )
