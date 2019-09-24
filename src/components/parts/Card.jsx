@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { CardContainer, CardText, ImageCard } from '../../assets/styles'
+import HeartSVG from '../../assets/HeartSVG'
 
 const Card = props => {
   const { recipe, loader, handleDisplayModal, expand } = props
@@ -29,6 +30,7 @@ const Card = props => {
             <p>{recipe.ingredientLines}</p>
             <p className={'cals'}>Calories: {Math.ceil(recipe.calories / recipe.yield)}</p>
           </CardText>
+          <HeartSVG position={'absolute'} bottom={10} right={10} />
         </CardContainer>
       )}
     </>

@@ -352,6 +352,7 @@ export const Bar = styled.div`
 
 // card styles
 export const CardContainer = styled.div`
+  position: relative;
   min-height: ${props => (props.expand ? 250 : 160)}px;
   flex-grow: 1;
   min-width: 375px;
