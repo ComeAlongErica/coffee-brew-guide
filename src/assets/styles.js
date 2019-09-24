@@ -264,3 +264,88 @@ export const StyledLink = styled.a`
     transform: scaleX(1);
   }
 `
+
+//login modal
+export const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  h3 {
+    color: ${props => props.theme.fontMain};
+    font-size: 26px;
+    margin: 10px;
+  }
+`
+
+export const LabelInputContainer = styled.div`
+  width: 250px;
+  height: 45px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+`
+export const Label = styled.label`
+  position: absolute;
+  left: 20px;
+  top: 16px;
+  pointer-events: none;
+  color: ${props => props.theme.fontMain};
+  transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  ${props =>
+    props.emailFocused &&
+    `
+  transform: scale(.9);
+  left: 13px;
+  top: -14px;
+  background-color: ${props.theme.backgroundSecondary};
+  padding: 5px 10px;
+  `}
+`
+export const Input = styled.input`
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  color: ${props => props.theme.fontMain};
+  border: 2px solid;
+  padding-left: 15px;
+  background-color: transparent;
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    border: 2px solid ${props => props.theme.fontMain};
+    -webkit-text-fill-color: ${props => props.theme.fontMain};
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  :focus {
+    outline: none;
+  }
+  ${props =>
+    props.error &&
+    `
+    border: 2px solid red;
+  `}
+`
+export const Bar = styled.div`
+  margin-top: 50px;
+  background-color: ${props => props.theme.fontSecondary + '26'};
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  p {
+    color: ${props => props.theme.fontMain};
+    font-size: 10px;
+    margin: 20px 20px 5px;
+    max-height: 50px;
+  }
+  .red {
+    color: red;
+    margin: 5px 20px;
+  }
+`
