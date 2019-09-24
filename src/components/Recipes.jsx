@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
 import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
