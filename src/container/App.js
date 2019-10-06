@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
 import { lightTheme, darkTheme } from '../assets/ThemeProvider'
-import { bakedTofu, seitan } from '../assets/utils'
+import { bakedTofu, seitan, chickpeas } from '../assets/utils'
 import Header from '../components/header/Header'
-import { Recipes } from '../components/Recipes'
+import Recipes from '../components/Recipes'
 import Modal from '../components/Modal'
 import RecipeModal from '../components/parts/RecipeModal'
 import LogIn from '../components/parts/LogInModal'
@@ -33,23 +33,6 @@ class App extends Component {
       modalData: null,
       showRecipeModal: false,
       favorites: []
-    }
-  }
-
-  componentDidUpdate () {
-    if (this.state.displayData === undefined) {
-      this.getRecipeData().then(data => {
-        data && this.setState({ displayData: data.hits })
-      })
-    }
-  }
-
-  componentDidMount () {
-    if (this.state.firstLoad) {
-      this.getRecipeData().then(data => {
-        data && this.setState({ displayData: data.hits })
-        this.state.firstLoad && this.setState({ firstLoad: false })
-      })
     }
   }
 
@@ -115,7 +98,7 @@ class App extends Component {
 
   render () {
     let displayTheme = this.state.theme ? darkTheme : lightTheme
-    let displayCats = [this.state.searchData, this.state.displayData, bakedTofu, seitan]
+    let displayCats = [this.state.searchData, chickpeas, bakedTofu, seitan]
     return (
       <ThemeProvider theme={displayTheme}>
         <AppContainer className={'appContainer'}>
@@ -126,36 +109,26 @@ class App extends Component {
             handleUser={this.handleUserModal}
           />
           {displayCats.map((cat, idx) => {
-            let scrollDirection = idx % 2 === 0
-            let card = null
-            if (idx === 0 && cat) {
-              card = (
+            if (cat) {
+              const scrollDirection = idx % 2 === 0
+              const searchQuery = idx === 0 ? cat.query : false
+              const recipes = idx === 0 ? cat.data : cat
+              return (
                 <Recipes
                   key={idx}
                   index={idx}
-                  query={cat.query}
-                  recipes={cat.data}
+                  query={searchQuery}
+                  recipes={recipes}
                   handleDisplayModal={this.handleDisplayModal}
                   handleFavorite={this.handleFavorite}
                   favorites={this.state.favorites}
                   scrollDirection={scrollDirection}
-                  expand
+                  expand={searchQuery}
                 />
               )
-            } else if (cat || idx === 1) {
-              card = (
-                <Recipes
-                  key={idx}
-                  index={idx}
-                  recipes={cat}
-                  handleDisplayModal={this.handleDisplayModal}
-                  handleFavorite={this.handleFavorite}
-                  favorites={this.state.favorites}
-                  scrollDirection={scrollDirection}
-                />
-              )
+            } else {
+              return null
             }
-            return card
           })}
           {this.state.modalFirstRender && (
             <Modal displayModal={this.state.displayModal} handleCloseModal={this.handleCloseModal}>

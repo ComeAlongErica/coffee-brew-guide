@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { ArrowRightCircle, ArrowLeftCircle } from 'react-feather'
 
 import Card from './parts/Card'
-import {
-  Grid,
-  ContainerForStickyArrows,
-  CardScrollContainer,
-  RightArrow,
-  LeftArrow,
-  SearchResults
-} from '../assets/styles.js'
+import ScrollNavigation from './parts/ScrollNavigation'
+import { Grid, CardScrollContainer, SearchResults } from '../assets/styles.js'
 
-export const RecipesComp = props => {
+const Recipes = props => {
   const { recipes, handleDisplayModal, scrollDirection, index, query, expand, handleFavorite, favorites } = props
   const [direction, setDirection] = useState(scrollDirection)
   const [showArrow, setShowArrow] = useState({ left: false, right: false })
-  const loaderCards = [1, 2, 3, 4, 5]
   const scrollContainers = document.getElementsByClassName('card-scroll-container')
   let containerIdx = scrollContainers && scrollContainers.length === 4 ? index : index - 1
   const scrollContainer = scrollContainers && scrollContainers[containerIdx]
@@ -38,19 +30,6 @@ export const RecipesComp = props => {
     }
   }
 
-  const handleScroll = direction => {
-    let halfWindowSize = window.innerWidth / 2
-    let currentPosition = scrollContainer.scrollLeft
-    let scrollDistance
-
-    if (direction) {
-      scrollDistance = currentPosition + halfWindowSize
-    } else {
-      scrollDistance = currentPosition - halfWindowSize
-    }
-
-    scrollContainer.scrollLeft = scrollDistance
-  }
   return (
     <Grid onMouseOver={() => displayArrow(true)} onMouseLeave={() => displayArrow(false)}>
       {expand && <SearchResults>Search results for {query}...</SearchResults>}
@@ -70,30 +49,13 @@ export const RecipesComp = props => {
             )
           })}
         {!recipes &&
-          loaderCards.map((card, idx) => {
+          [1, 2, 3, 4, 5].map(idx => {
             return <Card key={idx} loader />
           })}
       </CardScrollContainer>
-      <ContainerForStickyArrows enterDirection={direction}>
-        <LeftArrow
-          className={'arrow'}
-          onClick={() => handleScroll(false)}
-          showArrow={showArrow.left}
-          expand={expand}
-          left>
-          <ArrowLeftCircle height={50} width={50} color={'#f9bd35'} />
-        </LeftArrow>
-        <RightArrow
-          className={'arrow'}
-          onClick={() => handleScroll(true)}
-          showArrow={showArrow.right}
-          expand={expand}
-          right>
-          <ArrowRightCircle height={50} width={50} color={'#f9bd35'} />
-        </RightArrow>
-      </ContainerForStickyArrows>
+      <ScrollNavigation enterDirection={direction} expand={expand} showArrow={showArrow} index={index} />
     </Grid>
   )
 }
 
-export const Recipes = React.memo(RecipesComp)
+export default Recipes
