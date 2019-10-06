@@ -11,7 +11,7 @@ import {
   SearchResults
 } from '../assets/styles.js'
 
-const Recipes = props => {
+export const RecipesComp = props => {
   const { recipes, handleDisplayModal, scrollDirection, index, query, expand, handleFavorite, favorites } = props
   const [direction, setDirection] = useState(scrollDirection)
   const [showArrow, setShowArrow] = useState({ left: false, right: false })
@@ -96,4 +96,4 @@ const Recipes = props => {
   )
 }
 
-export default Recipes
+export const Recipes = React.memo(RecipesComp)
